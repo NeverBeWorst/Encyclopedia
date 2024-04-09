@@ -1,0 +1,10 @@
+p, main a {
+    font-size: 17pt;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+

@@ -1,0 +1,105 @@
+section {
+    margin: 0 50px;
+    width: 90%;
+}
+
+.scrapbook {
+    /*display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    
+    padding: 50px;
+    background-color: #664031;
+}
+
+.creature  {
+    border-radius: 10%;
+    padding: 10px;
+    background-color: #7e513e;
+    color: bisque;
+    border: solid #492f24 1px;
+    width: 90%;
+    transition: width 0.5s cubic-bezier(0, 0, 1, 1);
+}
+
+.seam {
+    padding: 10px;
+    border: dashed #3f2920 2px;
+    border-radius: 10%;
+    height: 94%;
+}
+
+.filtration select{
+    field-sizing: content;
+    min-width: 200px;
+    height: 25px;
+    font-size: 11pt;
+    border-radius: 5px;
+}
+
+.filtration {
+    background-color: #7e513e;
+    height: 200px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.filtration form {
+    width: 500px;
+    margin: auto;
+}
+
+.filtration form input {
+    width: 70px;
+    height: 20px;
+    font-size: 10pt;
+}
+
+
+.creature .name {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+.creature .picture {
+    display: flex;
+    justify-content: center;
+}
+
+.creature .picture img {
+    width: 250px;
+    height: 250px;
+    border-radius: 10%;
+    border: solid 2px bisque;
+    object-fit:cover;
+}
+
+.creature .short_description {
+    margin: 5px;
+    font-size: 14pt;
+    text-align: center;
+}
+
+.creature a {
+    color: bisque;
+    font-size: 14pt;
+    text-align: right;
+}
+
+.creature a:hover {
+    color: #201410;
+    border-bottom: #201410 solid 2px;
+    border-radius: 10%;
+    transition: 0.2s;
+}
+
+.creature:hover {
+    transition: 0.5s;
+    box-shadow: 5px 15px 6px #492f24 ;
+    transform: scale(1.04, 1.04)
+}

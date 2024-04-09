@@ -1,0 +1,128 @@
+section {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.picture img {
+    width: 400px;
+}
+
+.name {
+    font-size: 30pt;
+}
+
+.info_block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.download_icon {
+    background-color: white;
+    padding: 1px;
+    border-radius: 30%;
+    
+}
+
+.back_button {
+    width: 100px;
+    height: 35px;
+}
+
+.back_button p {
+    font-size: 17pt;
+    color: black;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    margin-bottom: 2px;
+}
+
+.back_button:hover p {
+    border-bottom: solid black 3px;
+    border-radius: 10%;
+    transition: 0.1s;
+}
+
+.download_icon img{
+    max-width: 30px;
+    height: 30px;
+    background-color: white;
+}
+
+.info_block div {
+    width: 500px;
+    margin: 20px;
+}
+
+.info_block .picture img {
+    border-radius: 10px;
+}
+
+.info_block .short_info {
+    width: 1000px;
+}
+
+.info_block .short_info div {
+    display: flex;
+    font-size: 15pt;
+}
+
+.info_block .name {
+    text-align: center;
+    font-size: 30pt;
+}
+
+.creature_description {
+    width: 800px;
+    margin: 10px auto;
+    padding: 10px;
+    border: solid 1px;
+    font-size: 20pt;
+}
+
+
+.creature_description .description {
+    font-size: 16pt;
+}
+
+.description {
+    white-space: pre-line;
+}
+
+.comment_block {
+    width: 1000px;
+    margin: 10px auto;
+}
+
+.comment_block div p {
+    font-size: 15pt;
+}
+
+.comment_block form {
+    display: block;
+}
+
+.comment_block form .text {
+    width: 500px;
+    height: 25px;
+    margin: 5px;
+}
+
+.comments p {
+    font-size: 15pt;
+}
+
+.comments div {
+    display: flex;
+    border-bottom: solid 1px;
+}
+
+.comments div .user_name {
+    font-weight: bold;
+    margin: 10px;
+    width: 80px;
+}
+
+.comments div p {
+    margin: 5px;
+}

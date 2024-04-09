@@ -1,0 +1,15 @@
+.creature_form {
+    margin: 20px;
+}
+
+form input, form select {
+    width: 200px;
+}
+
+form textarea {
+    width: 300px;
+}
+
+p, main a {
+    font-size: 17pt;
+}
