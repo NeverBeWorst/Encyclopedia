@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth', 'admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin');
     Route::post('/admin/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
+
+    Route::post('/admin/photo/submit', 'App\Http\Controllers\CreatureController@photo_submit')->name('creature_photo.submit');
 });
 
 

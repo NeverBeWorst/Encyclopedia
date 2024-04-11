@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatureRequest;
+use App\Http\Requests\CreaturesPhotoRequest;
 use App\Models\Creature;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SearchRequest;
@@ -23,6 +24,16 @@ class CreatureController extends Controller
         $creature->short_description = $req->input('short_description');
         $creature->description = $req->input('description');
         $creature->save();
+        return redirect(route('admin'));
+    }
+
+    public function photo_submit(Request $req) {
+
+        $file = $req->file('image');
+        $extension = $req->file('image')->extension();
+        $file->storeAs('carts', $req->name . "." . $extension , 'test');
+
+
         return redirect(route('admin'));
     }
 

@@ -28,7 +28,7 @@ class CreatureRequest extends FormRequest
             'name'              => 'required|min:1|max:50|unique:creatures,name',
             'img'               => 'required|unique:creatures,img',
             'short_description' => 'required|min:1|max:100',
-            'description'       => 'required|min:1|max:500'
+            'description'       => 'required|min:1|max:500',
         ];
     }
 

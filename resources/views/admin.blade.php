@@ -50,12 +50,13 @@
             <button type="submit">Отправить</button>
         </form>
 
-        <form>
-            <input type="file" id="image" name="file">
-            <label for="image">
-            <i aria-hidden="true"></i>
-        </label>
-    </form>
+        <form method="post" action="{{ route('creature_photo.submit') }}" enctype="multipart/form-data">
+            @csrf 
+            <div><input type="text" name="name"></div>
+            <div><input type="file" name="image"></div>
+            
+            <button type="submit">Отправить</button>
+        </form>
     </div>
 </section>
 @endsection
