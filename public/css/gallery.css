@@ -48,6 +48,11 @@ section {
     border-top-right-radius: 50px;
 }
 
+.reset_filters {
+    width: 200px;
+    border: solid black 5px;
+}
+
 .filtration form {
     width: 500px;
     margin: auto;

@@ -22,7 +22,7 @@ class ReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'text'  => 'required|min:1|max:2000',
         ];
     }
 }

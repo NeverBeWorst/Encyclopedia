@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+
 use App\Models\User;
+
+use Illuminate\Support\Facades\Auth;
+
 use Hash;
 
 class RegisterController extends Controller
@@ -15,6 +19,7 @@ class RegisterController extends Controller
             'password' => bcrypt($req->password),
             'admin' => false,
         ] + $req->all());
+
         return redirect(route('profile'));
     }
 }

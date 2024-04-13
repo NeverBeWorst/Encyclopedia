@@ -3,14 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CreatureController;
+
+
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Session;
-use App\User;
+
+use App\Models\User;
+use App\Models\Creature;
 
 class AdminController extends Controller
 {
     public function index(Request $req) {
-        return view('admin');
+        $users = User::all();
+
+        return view('admin', ['users' => $users, '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat]);
     }
+
+    public function user_block(string $id) {
+        
+        return redirect(route('admin'));
+    }
+
+    public function user_delete(Request $req, string $id) {
+        User::destroy($id);
+        return redirect(route('admin'));
+    }
+
 }

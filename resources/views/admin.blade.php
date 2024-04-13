@@ -9,54 +9,122 @@
 @endsection
 
 @section('content')
-<h1>Привет</h1>
+
+@if ($errors->any())
+    <div >
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <section>
+    <div><h2>Форма для создания существа</h2></div><br>
+
     <div class="creature_form">
-        <p><br>Форма для создания существа</p>
         <form action="{{ route('creature.submit') }}" method="post">
         @csrf
-            <div><input type="text" name="name" placeholder="Введите имя" required></div>
-            <div><input type="text" name="img" placeholder="Введите наименование фото" required></div>
-            <div>
-                <select name="mythology" id="mythology" placeholder="Выбирите мифологию" required>
-                    <option value=""></option>
-                    <option value="Древнегреческая">Древнегреческая</option>
-                    <option value="Японская">Японская</option>
-                    <option value="Славянская">Славянская</option>
-                    <option value="Скандинавская">Скандинавская</option>
-                    <option value="Финская">Финская</option>
-                    <option value="Восточноевропейская">Восточноевропейская </option>
-                    <option value="Индийская">Индийская</option>
-                    <option value="Другое">Другое</option>
-                    <option value="Пользовательская">Пользовательская</option>
-                </select>
-            </div>
-            <div>
-                <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности" required>
-                    <option value=""></option>
-                    <option value="Болото">Болото</option>
-                    <option value="Поля/луга">Поля/луга</option>
-                    <option value="Заброшенные сооружения">Заброшенные сооружения</option>
-                    <option value="Дома">Дома</option>
-                    <option value="Сны">Сны</option>
-                    <option value="Леса">Леса</option>
-                    <option value="Другое">Другое</option>
-                    <option value="Пользовательская">Пользовательская</option>
-                </select>
-            </div>
-            <div><input type="text" name="short_description" placeholder="Введите краткое описание"></div>
-            <div><textarea rows="10"  name="description" placeholder="Введите Описание"></textarea></div>
+            <div class="form_block">
+                <div>
+                    <input type="text" name="name" id="name" placeholder="Введите имя" required><br>
+                    <input type="text" name="img" placeholder="Введите наименование фото" required><br>
+                    
+                    <select name="mythology" id="mythology" placeholder="Выбирите мифологию"  required>
+                        <option value="" selected disabled hidden>Мифология</option>
+                        @foreach($_mythology as $criterion)
+                        <option value="{{$criterion}}" >{{$criterion}}</option>
+                        @endforeach
+                    </select><br>
+                    
+                    <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности" required>
+                        <option value="" selected disabled hidden>Среда обитания</option>
+                        @foreach($_habitat as $criterion)
+                        <option value="{{$criterion}}" >{{$criterion}}</option>
+                        @endforeach
+                    </select><br>
 
-            <button type="submit">Отправить</button>
+                    <input type="text" name="short_description" placeholder="Введите краткое описание"><br>
+
+                    <button type="submit">Отправить</button>
+                </div>
+                
+                <textarea rows="10"  name="description" placeholder="Введите Описание"></textarea><br>
+            </div>
         </form>
 
-        <form method="post" action="{{ route('creature_photo.submit') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('creatures_image.submit') }}" enctype="multipart/form-data">
             @csrf 
-            <div><input type="text" name="name"></div>
-            <div><input type="file" name="image"></div>
-            
-            <button type="submit">Отправить</button>
+            <div>
+                <input type="text" name="img_name" placeholder="Введите как хотите назвать картинку"><br>
+                <input type="file" name="image"><br>
+                
+                <button type="submit">Отправить</button>
+            </div>
+
+            <img class="your-image" src="" alt="">
         </form>
+
+        <form action="{{ route('creature_with_img.submit') }}" method="post" enctype="multipart/form-data">
+        @csrf
+            <div class="form_block">
+                <div>
+                    <input type="text" name="name" id="name" placeholder="Введите имя" required><br>
+                    <input type="text" name="img_name" placeholder="Введите как хотите назвать картинку"><br>
+                    <input type="file" name="image"><br>
+                    
+                    <select name="mythology" id="mythology" placeholder="Выбирите мифологию" required>
+                        <option value="" selected disabled hidden>Мифология</option>
+                        @foreach($_mythology as $criterion)
+                        <option value="{{$criterion}}" >{{$criterion}}</option>
+                        @endforeach
+                    </select><br>
+                    
+                    
+                    <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности" required>
+                        <option value="" selected disabled hidden>Среда обитания</option>
+                        @foreach($_habitat as $criterion)
+                        <option value="{{$criterion}}" >{{$criterion}}</option>
+                        @endforeach
+                    </select><br>
+
+                    <input type="text" name="short_description" placeholder="Введите краткое описание"><br>
+
+                    <button type="submit">Отправить</button>
+                </div>
+                
+                <textarea rows="10"  name="description" placeholder="Введите Описание"></textarea><br>
+            </div>
+        </form>
+
+        <form action=""></form>
+    </div>
+
+    <div class="users_list">
+        <ol>
+            @foreach($users as $user)
+            <li>
+                <p>{{ $user->id }}</p>
+                <p>{{ $user->login }}</p>
+                <p>{{ $user->email }}</p>
+                <p>{{ $user->created_at }}</p>
+                <p>{{ $user->update_at }}</p>
+                <p><a href="{{ route('user_block', [$user->id]) }}">Заблокировать</a></p>
+                <p><form action="{{ route('user_delete', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Удалить"> </form></p>
+            </li>
+            @endforeach
+        </ol>
+        
+    </div>
+
+    <div>
+        <p><a href="{{ route('proposal_add_creature') }}">Список предложений к добавлению</a></p>
     </div>
 </section>
+
+<?php
+
+?>
+
 @endsection

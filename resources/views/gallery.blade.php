@@ -9,37 +9,45 @@
 @endsection
 
 @section('content')
+
+@if ($errors->any())
+    <div >
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <section>
     <div class="filtration">
         <form action="{{ route ('search')}}" method="post">
             @csrf
             <select name="mythology" id="mythology" placeholder="Выбирите мифологию">
-                <option value=""></option>
-                <option value="Древнегреческая">Древнегреческая</option>
-                <option value="Японская">Японская</option>
-                <option value="Славянская">Славянская</option>
-                <option value="Скандинавская">Скандинавская</option>
-                <option value="Финская">Финская</option>
-                <option value="Восточноевропейская">Восточноевропейская </option>
-                <option value="Индийская">Индийская</option>
-                <option value="Другое">Другое</option>
-                <option value="Пользовательская">Пользовательская</option>
+                <option value="" selected disabled hidden>Мифология</option>
+                @foreach($_mythology as $criterion)
+                <option value="{{$criterion}}" @if($criterion == $mythology) selected @endif >{{$criterion}}</option>
+                @endforeach
             </select>
 
             <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности">
-                <option value=""></option>
-                <option value="Болото">Болото</option>
-                <option value="Поля/луга">Поля/луга</option>
-                <option value="Заброшенные сооружения">Заброшенные сооружения</option>
-                <option value="Дома">Дома</option>
-                <option value="Сны">Сны</option>
-                <option value="Леса">Леса</option>
-                <option value="Другое">Другое</option>
-                <option value="Пользовательская">Пользовательская</option>
+                <option value="" selected disabled hidden>Среда обитания</option>
+                @foreach($_habitat as $criterion)
+                <option value="{{$criterion}}"  @if($criterion == $habitat) selected @endif >{{$criterion}}</option>
+                @endforeach
             </select>
 
             <input type="submit" value="Найти">
         </form>
+        
+        
+        <div class="reset_filters">
+            <a href="{{route('gallery')}}" >
+                <p>Сбросить фильтры</p>
+            </a>
+        </div>
+        
     </div>
 
     <div class="scrapbook">
@@ -51,17 +59,20 @@
             
             <div class="seam">
                 <p class="name">{{$creature->name}}</p>
-                <div class="picture"><img  src="{{$creature->img}}" alt="Фото/картина существа"></div> 
+                <div class="picture"><img src="{{$creature->img}}" alt="Фото/картина существа"></div> 
                 <p class="short_description">{{$creature->short_description}}</p>
             </div>
         </div>
         </a>
         @endforeach
+        @endif
 
-        @else
-            <div><p>Ничего не найдено</p></div>
+        @if ($creatures->count() == 0)
+        <div><p>Ничего не найдено</p></div>
         @endif
     </div>
+
+    
     
 </section>
 @endsection

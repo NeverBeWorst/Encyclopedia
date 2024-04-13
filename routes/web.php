@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return redirect('home');
 });
@@ -42,9 +43,19 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth', 'admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin');
-    Route::post('/admin/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
+    
+    Route::post('/admin/creature/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
+    Route::post('/admin/creature/creature_with_img/submit', 'App\Http\Controllers\CreatureController@submit_with_image')->name('creature_with_img.submit');
 
-    Route::post('/admin/photo/submit', 'App\Http\Controllers\CreatureController@photo_submit')->name('creature_photo.submit');
+    Route::get('/admin/creature/proposal_add', 'App\Http\Controllers\PagesController@proposal_add_creature')->name('proposal_add_creature');
+
+    Route::post('/admin/creature/proposal_add/{id}/confirm', 'App\Http\Controllers\CreatureController@confirm_proposal')->name('proposal_add_creature.confirm');
+    Route::post('/admin/creature/proposal_add/{id}/reject', 'App\Http\Controllers\CreatureController@reject_proposal')->name('proposal_add_creature.reject');
+
+    Route::post('/admin/photo/submit', 'App\Http\Controllers\CreatureController@image_submit')->name('creatures_image.submit');
+
+    Route::post('/admin/user/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
+    Route::post('/admin/user/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
 });
 
 
