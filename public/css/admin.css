@@ -48,16 +48,3 @@ p, main a {
     min-width: 400px;
 }
 
-.users_list ol {
-    width: 80%;
-    border: solid grey 5px;
-}
-
-.users_list ol li {
-    display: flex;
-    margin-right: 10px;
-}
-
-.users_list ol li p {
-    flex-grow: 1;
-}

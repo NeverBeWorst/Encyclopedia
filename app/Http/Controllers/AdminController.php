@@ -22,14 +22,22 @@ class AdminController extends Controller
         return view('admin', ['users' => $users, '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat]);
     }
 
+    public function users() {
+        $users = User::all();
+
+        return view('admin/users', ['users' => $users]);
+    }
+
     public function user_block(string $id) {
         
-        return redirect(route('admin'));
+        return redirect(route('admin/users'));
     }
 
     public function user_delete(Request $req, string $id) {
         User::destroy($id);
-        return redirect(route('admin'));
+        return redirect(route('admin/users'));
     }
+
+    
 
 }

@@ -40,6 +40,11 @@ class CreatureController extends Controller
         'Пользовательская',
     ];
 
+    /*public static $proposal_add_status = [
+        'Принять',
+        'Отклонить',
+    ];*/
+
     public function submit(CreatureRequest $req)
     {
         $creature = new Creature();
@@ -94,8 +99,10 @@ class CreatureController extends Controller
 
         $creatures = $creatures->shuffle();
 
+        $creatures->splice(9);
+
         return view('gallery', ['creatures' => $creatures, 'mythology' => null, 'habitat' => null
-        , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat]);
+        , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => '']);
     }
 
     public function creature_view(string $id) {
@@ -113,19 +120,28 @@ class CreatureController extends Controller
     }
 
     public function search(SearchRequest $req) {
-        $creatures = Creature::all();
+        $creatures = Creature::query();
         $mythology = $req->input('mythology');
         $habitat = $req->input('habitat');
-
+        $name = $req->input('name');
+ 
         if($mythology) {
             $creatures = $creatures->where('mythology', '==', $mythology);
         }
         if ($habitat) {
             $creatures = $creatures->where('habitat', '==', $habitat);
         }
+        if($name) {
+            $creatures = $creatures->where('name', 'like', '%'.$name.'%');
+        }
+        $creatures = $creatures->get(); 
         
 
         return view('gallery', ['creatures' => $creatures, 'mythology' => $mythology, 'habitat' => $habitat
-        , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat]);
+        , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => $name]);
+    }
+
+    public function proposal_add_creature() {
+        return view('admin/proposal_add_creature');
     }
 }

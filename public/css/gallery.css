@@ -4,9 +4,6 @@ section {
 }
 
 .scrapbook {
-    /*display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;*/
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 20px;
@@ -50,7 +47,7 @@ section {
 
 .reset_filters {
     width: 200px;
-    border: solid black 5px;
+    color: white;
 }
 
 .filtration form {

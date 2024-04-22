@@ -20,10 +20,13 @@
     </div>
 @endif
 
+
+
 <section>
     <div class="filtration">
         <form action="{{ route ('search')}}" method="post">
             @csrf
+            <input type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
             <select name="mythology" id="mythology" placeholder="Выбирите мифологию">
                 <option value="" selected disabled hidden>Мифология</option>
                 @foreach($_mythology as $criterion)

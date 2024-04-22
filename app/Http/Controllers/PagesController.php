@@ -35,7 +35,4 @@ class PagesController extends Controller
         return view('password_recovery');
     }
 
-    public function proposal_add_creature() {
-        return view('proposal_add_creature');
-    }
 }

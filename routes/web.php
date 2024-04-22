@@ -13,21 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('home');
-});
+Route::redirect('/', '/home');
 
 Route::get('/home', 'App\Http\Controllers\PagesController@home')->name('home');
 
-Route::get('/gallery', 'App\Http\Controllers\CreatureController@index')->name('gallery');
 
-Route::post('/gallery', 'App\Http\Controllers\CreatureController@search')->name('search');
+Route::prefix('/gallery')->group(function () {
+    Route::get('/', 'App\Http\Controllers\CreatureController@index')->name('gallery');
 
-Route::get('/gallery/gallery_creature/{id}', 'App\Http\Controllers\CreatureController@creature_view')->name('gallery_creature');
+    Route::post('/', 'App\Http\Controllers\CreatureController@search')->name('search');
 
-Route::post('/gallery/gallery_creature/{id}/submit', 'App\Http\Controllers\ReviewController@submit')->name('gallery_creature.submit');
+    Route::get('/gallery_creature/{id}', 'App\Http\Controllers\CreatureController@creature_view')->name('gallery_creature');
+
+    Route::post('/gallery_creature/{id}/submit', 'App\Http\Controllers\ReviewController@submit')->name('gallery_creature.submit');
+});
+
 
 Route::get('/profile', 'App\Http\Controllers\PagesController@profile')->name('profile');
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/reg', 'App\Http\Controllers\PagesController@reg')->name('reg');
@@ -37,25 +40,35 @@ Route::middleware('guest')->group(function () {
     Route::post('/login/submit', 'App\Http\Controllers\LoginController@index')->name('login.submit');
 });
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('login.logout');
 });
 
+
 Route::middleware('auth', 'admin')->group(function () {
-    Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin');
+    Route::prefix('/admin')->group(function () {
+        Route::get('/', 'App\Http\Controllers\AdminController@index')->name('admin');
+        
+        Route::prefix('/creature')->group(function () {
+            Route::post('/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
+            Route::post('/creature_with_img/submit', 'App\Http\Controllers\CreatureController@submit_with_image')->name('creature_with_img.submit');
     
-    Route::post('/admin/creature/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
-    Route::post('/admin/creature/creature_with_img/submit', 'App\Http\Controllers\CreatureController@submit_with_image')->name('creature_with_img.submit');
+            Route::get('/proposal_add', 'App\Http\Controllers\CreatureController@proposal_add_creature')->name('proposal_add_creature');
+    
+            Route::post('/proposal_add/{id}/confirm', 'App\Http\Controllers\CreatureController@confirm_proposal')->name('proposal_add_creature.confirm');
+            Route::post('/proposal_add/{id}/reject', 'App\Http\Controllers\CreatureController@reject_proposal')->name('proposal_add_creature.reject');
+        
+            Route::post('/photo/submit', 'App\Http\Controllers\CreatureController@image_submit')->name('creatures_image.submit');
+        });
+        
 
-    Route::get('/admin/creature/proposal_add', 'App\Http\Controllers\PagesController@proposal_add_creature')->name('proposal_add_creature');
 
-    Route::post('/admin/creature/proposal_add/{id}/confirm', 'App\Http\Controllers\CreatureController@confirm_proposal')->name('proposal_add_creature.confirm');
-    Route::post('/admin/creature/proposal_add/{id}/reject', 'App\Http\Controllers\CreatureController@reject_proposal')->name('proposal_add_creature.reject');
-
-    Route::post('/admin/photo/submit', 'App\Http\Controllers\CreatureController@image_submit')->name('creatures_image.submit');
-
-    Route::post('/admin/user/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
-    Route::post('/admin/user/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
+        Route::get('/users', 'App\Http\Controllers\AdminController@users')->name('users');
+        Route::post('/users/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
+        Route::post('/users/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
+    });
+    
 });
 
 
