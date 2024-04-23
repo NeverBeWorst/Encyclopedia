@@ -26,14 +26,7 @@ class LoginController extends Controller
             $user_name = $user->login;
             Session::put('user_name', $user_name);
 
-            if($user->admin == true) {
-                Session::put('admin', true);
-                return redirect(route('profile'));
-            }
-            else {
-                Session::put('admin', false);
-                return redirect(route('profile'));
-            }
+            return redirect(route('profile'));
         }
         else {
             $errorMessage = "Пользователь не найден";

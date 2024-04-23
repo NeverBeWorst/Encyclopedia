@@ -24,8 +24,6 @@ Route::prefix('/gallery')->group(function () {
     Route::post('/', 'App\Http\Controllers\CreatureController@search')->name('search');
 
     Route::get('/gallery_creature/{id}', 'App\Http\Controllers\CreatureController@creature_view')->name('gallery_creature');
-
-    Route::post('/gallery_creature/{id}/submit', 'App\Http\Controllers\ReviewController@submit')->name('gallery_creature.submit');
 });
 
 
@@ -42,32 +40,41 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
+    
     Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('login.logout');
+
+    Route::get('profile/proposal_add');
+
+    Route::post('gallery/gallery_creature/{id}/submit', 'App\Http\Controllers\ReviewController@submit')->name('gallery_creature.submit');
 });
 
 
 Route::middleware('auth', 'admin')->group(function () {
-    Route::prefix('/admin')->group(function () {
-        Route::get('/', 'App\Http\Controllers\AdminController@index')->name('admin');
+    Route::name('admin.')->group(function () {
+        Route::prefix('/admin')->group(function () {
+            Route::get('/', 'App\Http\Controllers\AdminController@index')->name('main');
+            
+            Route::prefix('/creature')->group(function () {
+                Route::post('/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
+                Route::post('/creature_with_img/submit', 'App\Http\Controllers\CreatureController@submit_with_image')->name('creature_with_img.submit');
         
-        Route::prefix('/creature')->group(function () {
-            Route::post('/submit', 'App\Http\Controllers\CreatureController@submit')->name('creature.submit');
-            Route::post('/creature_with_img/submit', 'App\Http\Controllers\CreatureController@submit_with_image')->name('creature_with_img.submit');
-    
-            Route::get('/proposal_add', 'App\Http\Controllers\CreatureController@proposal_add_creature')->name('proposal_add_creature');
-    
-            Route::post('/proposal_add/{id}/confirm', 'App\Http\Controllers\CreatureController@confirm_proposal')->name('proposal_add_creature.confirm');
-            Route::post('/proposal_add/{id}/reject', 'App\Http\Controllers\CreatureController@reject_proposal')->name('proposal_add_creature.reject');
+                Route::get('/proposal_add', 'App\Http\Controllers\AdminController@proposal_add_creature')->name('proposal_add_creature');
         
-            Route::post('/photo/submit', 'App\Http\Controllers\CreatureController@image_submit')->name('creatures_image.submit');
+                Route::post('/proposal_add/{id}/confirm', 'App\Http\Controllers\AdminController@confirm_proposal')->name('proposal_add_creature.confirm');
+                Route::post('/proposal_add/{id}/reject', 'App\Http\Controllers\AdminController@reject_proposal')->name('proposal_add_creature.reject');
+            
+                Route::post('/photo/submit', 'App\Http\Controllers\CreatureController@image_submit')->name('creatures_image.submit');
+            });
+            
+    
+    
+            Route::get('/users', 'App\Http\Controllers\AdminController@users')->name('users');
+            Route::post('/users/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
+            Route::post('/users/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
+            Route::post('/users/search', 'App\Http\Controllers\AdminController@users_search')->name('users.search');
         });
-        
-
-
-        Route::get('/users', 'App\Http\Controllers\AdminController@users')->name('users');
-        Route::post('/users/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
-        Route::post('/users/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
     });
+    
     
 });
 

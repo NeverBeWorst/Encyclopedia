@@ -25,7 +25,24 @@ class AdminController extends Controller
     public function users() {
         $users = User::all();
 
-        return view('admin/users', ['users' => $users]);
+        return view('admin/users', ['users' => $users, 'search' => false]);
+    }
+
+    public function users_search(Request $req) {
+        $users = User::query();
+        $id = $req->input('id');
+        $name = $req->input('name');
+
+        if ($id) {
+            $users = User::find($id);
+            // if (User::find($id - 1)) $users->push(User::find($id - 1));
+            // if (User::find($id + 1)) $users->push(User::find($id + 1));
+        }
+        if ($name) {
+            $users = $users->where('login', '==', $name);
+        }
+
+        return view('admin/users', ['users' => $users, 'search' => true]);
     }
 
     public function user_block(string $id) {
@@ -38,6 +55,16 @@ class AdminController extends Controller
         return redirect(route('admin/users'));
     }
 
-    
+    public function proposal_add_creature() {
+        return view('admin/proposal_add_creature');
+    }
+
+    public function confirm_proposal(string $id) {
+
+    }
+
+    public function reject_proposal(string $id) {
+        
+    }
 
 }

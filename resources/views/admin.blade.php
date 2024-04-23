@@ -24,7 +24,7 @@
     <div><h2>Форма для создания существа</h2></div><br>
 
     <div class="creature_form">
-        <form action="{{ route('creature.submit') }}" method="post">
+        <form action="{{ route('admin.creature.submit') }}" method="post">
         @csrf
             <div class="form_block">
                 <div>
@@ -54,7 +54,7 @@
             </div>
         </form>
 
-        <form method="post" action="{{ route('creatures_image.submit') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.creatures_image.submit') }}" enctype="multipart/form-data">
             @csrf 
             <div>
                 <input type="text" name="img_name" placeholder="Введите как хотите назвать картинку"><br>
@@ -66,7 +66,7 @@
             <img class="your-image" src="" alt="">
         </form>
 
-        <form action="{{ route('creature_with_img.submit') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.creature_with_img.submit') }}" method="post" enctype="multipart/form-data">
         @csrf
             <div class="form_block">
                 <div>
@@ -102,16 +102,12 @@
     </div>
 
     <div class="users_list">
-        <p><a href="{{ route('users') }}">Пользователи</a></p>
+        <p><a href="{{ route('admin.users') }}">Пользователи</a></p>
     </div>
 
     <div>
-        <p><a href="{{ route('proposal_add_creature') }}">Список предложений к добавлению</a></p>
+        <p><a href="{{ route('admin.proposal_add_creature') }}">Список предложений к добавлению</a></p>
     </div>
 </section>
-
-<?php
-
-?>
 
 @endsection

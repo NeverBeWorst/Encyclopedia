@@ -17,7 +17,6 @@ class RegisterController extends Controller
 
         $user = User::create([
             'password' => bcrypt($req->password),
-            'admin' => false,
         ] + $req->all());
 
         return redirect(route('profile'));

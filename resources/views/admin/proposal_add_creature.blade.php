@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('style')
-{{asset('css/admin.css')}}
+{{asset('css/admin/proposal_add_creature.css')}}
 @endsection
 
 @section('pagename')
@@ -18,8 +18,18 @@
             @endforeach
         </ul>
     </div>
+    
+    
 @endif
 
-
+<section>
+        <div><a href="{{ route('admin.main') }}">
+            <p>Назад</p>
+        </a></div>
+        
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
 
 @endsection

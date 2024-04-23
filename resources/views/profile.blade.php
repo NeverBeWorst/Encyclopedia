@@ -47,8 +47,23 @@
         
     </div>
 
-    @if(auth()->user() && session()->get('admin') == true)
-    <a href="{{ route('admin') }}">Страница администратора</a>
+    @if(Auth::user() && Auth::user()->role == 'admin')
+    <a href="{{ route('admin.main') }}">Страница администратора</a>
+    @endif
+
+    @if(Auth::user())
+    <div>
+        <ol>
+            <li>
+                <form action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                </form>
+            </li>
+
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
     @endif
     
 </section>

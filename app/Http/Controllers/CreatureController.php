@@ -12,6 +12,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SearchRequest;
 
 use App\Models\Creature;
+use App\Models\ProposalCreature;
 use App\Models\User;
 use App\Models\Review;
 
@@ -40,10 +41,7 @@ class CreatureController extends Controller
         'Пользовательская',
     ];
 
-    /*public static $proposal_add_status = [
-        'Принять',
-        'Отклонить',
-    ];*/
+
 
     public function submit(CreatureRequest $req)
     {
@@ -55,7 +53,7 @@ class CreatureController extends Controller
         $creature->short_description = $req->input('short_description');
         $creature->description = $req->input('description');
         $creature->save();
-        return redirect(route('admin'));
+        return redirect(route('admin.main'));
     }
 
     public function image_submit(CreaturesPhotoRequest $req) {
@@ -63,7 +61,7 @@ class CreatureController extends Controller
         $extension = $req->file('image')->extension();
         $file->storeAs('carts', $req->img_name . "." . $extension , 'test');
 
-        return redirect(route('admin'));
+        return redirect(route('admin.main'));
     }
 
     public function submit_with_image(CreatureWithImageRequest $req) {
@@ -83,16 +81,10 @@ class CreatureController extends Controller
         $creature->short_description = $req->input('short_description');
         $creature->description = $req->input('description');
         $creature->save();
-        return redirect(route('admin'));
+        return redirect(route('admin.main'));
     }
 
-    public function confirm_proposal(string $id) {
-
-    }
-
-    public function reject_proposal(string $id) {
-        
-    }
+    
 
     public function index(Request $req) {
         $creatures = Creature::all();
@@ -139,9 +131,5 @@ class CreatureController extends Controller
 
         return view('gallery', ['creatures' => $creatures, 'mythology' => $mythology, 'habitat' => $habitat
         , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => $name]);
-    }
-
-    public function proposal_add_creature() {
-        return view('admin/proposal_add_creature');
     }
 }
