@@ -80,13 +80,19 @@ section {
     font-size: 20pt;
 }
 
+.creature_description, .info_block {
+    font-family:'Bookerly';
+}
 
 .creature_description .description {
-    font-size: 16pt;
+    font-size: 17pt;
+    font-family:'Bookerly';
+    text-indent: 30px ;
+    margin-top: 5px;
 }
 
 .description {
-    white-space: pre-line;
+    white-space: pre-wrap;
 }
 
 .comment_block {

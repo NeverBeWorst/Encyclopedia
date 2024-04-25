@@ -22,7 +22,7 @@ class SearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'min:2|max:32',
+            'name' => 'max:32',
         ];
     }
 }

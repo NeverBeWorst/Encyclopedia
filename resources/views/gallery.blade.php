@@ -26,7 +26,7 @@
     <div class="filtration">
         <form action="{{ route ('search')}}" method="post">
             @csrf
-            <input type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
+            
             <select name="mythology" id="mythology" placeholder="Выбирите мифологию">
                 <option value="" selected disabled hidden>Мифология</option>
                 @foreach($_mythology as $criterion)
@@ -40,6 +40,7 @@
                 <option value="{{$criterion}}"  @if($criterion == $habitat) selected @endif >{{$criterion}}</option>
                 @endforeach
             </select>
+            <input class="search" type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
 
             <input type="submit" value="Найти">
         </form>

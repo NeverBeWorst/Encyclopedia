@@ -1,7 +1,70 @@
 section h2 {
     text-align: center;
+    font-size: 23pt;
 }
 
 section {
-    height: 500px;
+    min-height: 300px;
 }
+
+.about_us div {
+    margin: 30px 200px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.about_us div ul {
+    list-style-type: none;
+    font-size: 17pt;
+}
+
+.about_us div ul li {
+    margin-top: 15px;
+}
+
+.about_us div img {
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.about_myth p {
+    text-align: center;
+    width: 800px;
+    margin: 0 auto;
+    font-size: 16pt;
+    margin-top: 20px;
+}
+
+.about_myth img {
+    width: 500px;
+    margin: 0 400px;
+}
+
+.join_to_us div {
+    margin: 0 300px;
+}
+
+.join_to_us p {
+    font-size: 18pt;
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.join_to_us .button {
+    border-bottom: solid 3px black;
+    border-radius: 10px;
+    width: 200px; 
+    right: 0;
+    margin-top: 20px;
+}
+
+.join_to_us .button a {
+    font-size: 16pt;
+    text-align: center;
+    width: 100px;
+    
+}
+

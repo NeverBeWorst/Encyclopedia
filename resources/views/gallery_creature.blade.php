@@ -31,7 +31,7 @@
     </div>
 
     <div class="creature_description">
-        <p>Основная информация:</p>
+        <p>Основная информация: </p>
         <p class="description">{{$creature->description}}</p>
     </div>
 

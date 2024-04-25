@@ -5,6 +5,22 @@
     
 }
 
+@font-face {
+    font-family: "VividSans";
+    font-style: normal;
+    src:url("../fonts/VividSans-Regular.ttf") ;
+    
+}
+
+@font-face {
+    font-family: "Bookerly";
+    font-style: normal;
+    src:url("../fonts/Bookerly.ttf") ;
+    
+}
+
+
+
 * {
     margin: 0;
     padding: 0;

@@ -27,8 +27,8 @@ class CreatureWithImageRequest extends FormRequest
             'image'                 => 'required',
             'mythology'             => 'required',
             'habitat'               => 'required',
-            'short_description'     => 'required|min:1|max:50',
-            'description'           => 'required|min:1|max:500',
+            'short_description'     => 'required|min:1|max:30',
+            'description'           => 'required|min:1|max:2000',
         ];
     }
 }

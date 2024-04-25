@@ -61,6 +61,14 @@ section {
     font-size: 10pt;
 }
 
+.filtration form .search {
+    width: 200px;
+}
+
+.reset_filters p {
+    color: white;
+    text-align: center;
+}
 
 .creature .name {
     text-align: center;

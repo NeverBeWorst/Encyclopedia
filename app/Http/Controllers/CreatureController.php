@@ -26,6 +26,7 @@ class CreatureController extends Controller
         'Финская',
         'Восточноевропейская',
         'Индийская',
+        'Европейская',
         'Другое',
         'Пользовательская',
     ];
@@ -38,7 +39,7 @@ class CreatureController extends Controller
         'Сны',
         'Леса',
         'Другое',
-        'Пользовательская',
+        'Везде',
     ];
 
 
@@ -112,7 +113,7 @@ class CreatureController extends Controller
     }
 
     public function search(SearchRequest $req) {
-        $creatures = Creature::query();
+        $creatures = Creature::all();
         $mythology = $req->input('mythology');
         $habitat = $req->input('habitat');
         $name = $req->input('name');
@@ -124,9 +125,11 @@ class CreatureController extends Controller
             $creatures = $creatures->where('habitat', '==', $habitat);
         }
         if($name) {
+            $creatures = Creature::query();
             $creatures = $creatures->where('name', 'like', '%'.$name.'%');
+            $creatures = $creatures->get(); 
         }
-        $creatures = $creatures->get(); 
+        
         
 
         return view('gallery', ['creatures' => $creatures, 'mythology' => $mythology, 'habitat' => $habitat
