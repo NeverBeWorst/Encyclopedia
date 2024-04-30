@@ -10,16 +10,6 @@
 
 @section('content')
 
-@if ($errors->any())
-    <div >
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <section>
     <div><h2>Форма для создания существа</h2></div><br>
 
@@ -106,7 +96,11 @@
     </div>
 
     <div>
-        <p><a href="{{ route('admin.proposal_add_creature') }}">Список предложений к добавлению</a></p>
+        <p><a href="{{ route('admin.proposal_creature') }}">Список предложений к добавлению</a></p>
+    </div>
+
+    <div>
+        <p><a href="{{ route('admin.custom_creature') }}">Список пользовательских существ</a></p>
     </div>
 </section>
 

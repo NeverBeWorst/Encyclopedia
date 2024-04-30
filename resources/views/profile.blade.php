@@ -10,16 +10,6 @@
 
 @section('content')
 
-@if ($errors->any())
-    <div >
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <section>
     <div class="flex">
         <div>
@@ -55,12 +45,12 @@
     <div>
         <ol>
             <li>
-                <form action="" method="post" enctype="multipart/form-data">
-                    @csrf
-                </form>
+                <div><a href="{{ route('user.proposal_creature') }}">Предложение к добавлению</a></div>
             </li>
 
-            <li></li>
+            <li>
+                <div><a href="{{ route('user.custom_creature') }}">Пользовательская сущность</a></div>
+            </li>
             <li></li>
         </ol>
     </div>

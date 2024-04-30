@@ -10,17 +10,6 @@
 
 @section('content')
 
-@if ($errors->any())
-    <div >
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-
 
 <section>
     <div class="filtration">
@@ -41,6 +30,14 @@
                 @endforeach
             </select>
             <input class="search" type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
+
+            <ol>
+                <input name="custom" type="radio" value=""> <p>без</p>
+            
+                <input name="custom" type="radio" value="with_custom"> <p>с</p>
+            
+                <input name="custom" type="radio" value="only_custom"> <p>только</p>
+            </ol>
 
             <input type="submit" value="Найти">
         </form>

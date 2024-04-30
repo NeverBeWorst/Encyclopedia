@@ -10,9 +10,11 @@ use App\Http\Requests\CreaturesPhotoRequest;
 use App\Http\Requests\CreatureWithImageRequest;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\SearchRequest;
+use App\Http\Requests\ProposalCreatureRequest;
 
 use App\Models\Creature;
 use App\Models\ProposalCreature;
+use App\Models\CustomCreature;
 use App\Models\User;
 use App\Models\Review;
 
@@ -28,7 +30,6 @@ class CreatureController extends Controller
         'Индийская',
         'Европейская',
         'Другое',
-        'Пользовательская',
     ];
 
     public static $_habitat = [
@@ -92,7 +93,7 @@ class CreatureController extends Controller
 
         $creatures = $creatures->shuffle();
 
-        $creatures->splice(9);
+        $creatures->splice(30);
 
         return view('gallery', ['creatures' => $creatures, 'mythology' => null, 'habitat' => null
         , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => '']);
@@ -103,8 +104,7 @@ class CreatureController extends Controller
         $users = User::all();
 
         if(!$creature) {
-            $errorMessage = "Заявление не найдено";
-            return redirect()->back()->withErrors($errorMessage);
+            return redirect()->back()->withErrors("Заявление не найдено");
         }
         
         $reviews = Review::all()->where('creature_id', '==', $id);
@@ -117,6 +117,7 @@ class CreatureController extends Controller
         $mythology = $req->input('mythology');
         $habitat = $req->input('habitat');
         $name = $req->input('name');
+        $custom = $req->input('custom');
  
         if($mythology) {
             $creatures = $creatures->where('mythology', '==', $mythology);
@@ -129,10 +130,16 @@ class CreatureController extends Controller
             $creatures = $creatures->where('name', 'like', '%'.$name.'%');
             $creatures = $creatures->get(); 
         }
+        if($custom) {
+            if($custom == 'with_custom') {
+                $creatures = $creatures->merge(CustomCreature::all());
+            }
+        }
         
         
-
         return view('gallery', ['creatures' => $creatures, 'mythology' => $mythology, 'habitat' => $habitat
         , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => $name]);
     }
+
+    
 }

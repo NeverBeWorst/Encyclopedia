@@ -35,4 +35,12 @@ class PagesController extends Controller
         return view('password_recovery');
     }
 
+    public function proposal_creature() {
+        return view('user/proposal_creature', ['_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat]);
+    }
+
+    public function custom_creature() {
+        return view('user/custom_creature', ['_habitat' => CreatureController::$_habitat]);
+    }
+
 }

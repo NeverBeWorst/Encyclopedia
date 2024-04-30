@@ -9,7 +9,7 @@ use App\Http\Requests\LoginRequest;
 
 use Illuminate\Support\Facades\Auth;
 
-use App\User;
+use App\Models\User;
 use Session;
 
 

@@ -8,11 +8,20 @@
     <title>@yield('pagename')</title>
 </head>
 <body>
-    
     <div class="main_background">
         @include('inc.header')
 
         <main class="content">
+        @if ($errors->any())
+            <div >
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
             @yield('content')
         </main>
 
