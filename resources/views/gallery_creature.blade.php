@@ -16,9 +16,14 @@
     
     <div class="info_block">
         <div class="picture">
-            
-            <img src="../../{{$creature->img}}" alt="Фото/картина существа"> 
+            @if ($creature->user)
+            <img src="../../img/users/custom_creature/carts/{{$creature->img}}" alt="Фото/картина существа"> 
+            <a class="download_icon" href="../../img/users/custom_creature/carts/{{$creature->img}}" download><img src="../../img/icons/download.png" alt="Скачать"></a>
+
+            @else
+            <img src="../../img/carts/{{$creature->img}}" alt="Фото/картина существа"> 
             <a class="download_icon" href="../../{{$creature->img}}" download><img src="../../img/icons/download.png" alt="Скачать"></a>
+            @endif
         </div>
         
 
@@ -32,7 +37,12 @@
 
     <div class="creature_description">
         <p>Основная информация: </p>
-        <p class="description">{{$creature->description}}</p>
+        <!-- <p class="description">{{$creature->description}}</p> -->
+        <ul class="description">
+            @foreach($creature_text as $text)
+            <p>{{ $text }}</p>
+            @endforeach
+        </ul>
     </div>
 
     <div class="comment_block">
@@ -53,15 +63,19 @@
         <div class="comments">
             <p>Комментарии других пользователей:</p>
 
+            @if ($reviews)
             @foreach($reviews as $review)
                 <div>
-                    <p class="user_name">{{$review->user_name}}</p>
+                    <a href="{{ route('profile.user', [$review->user_id] ) }}"><p class="user_name">{{$review->user_name}}</p></a>
                     <p>{{$review->text}}</p>
                 </div>
             @endforeach
+
+            @else
+            <p>Пока ни кто не оставлял свои комментарии</p>
+            @endif
         </div>
         
-
 
     </div>
     

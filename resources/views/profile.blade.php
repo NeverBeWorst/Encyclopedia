@@ -13,11 +13,26 @@
 <section>
     <div class="flex">
         <div>
-            @if(auth()->user() )
-            <p>Логин: {{session()->get('user_name')}}</p>
-            <a href="{{route('login.logout')}}">Выйти</a>
+            @if(Auth::user() )
+            
             <!-- <p>Тест отправки на почту</p> -->
             <!-- <a href="">Проверить</a> -->
+            <div>
+                <img src="" alt="">
+                <p>Логин: {{ Auth::user()->login }}</p>
+                <a href="{{route('login.logout')}}">Выйти</a>
+            </div>
+
+            @if ($custom_creatures) 
+            <ul>
+            @foreach($custom_creatures as $creature) 
+            <li>{{ $creature->name }} , {{ $creature->short_description }}
+                <a href="{{ route('gallery.custom_creature', [$creature->id]) }}">
+                    <p>Посмотреть</p>
+                </a></li>
+            @endforeach
+            </ul>
+            @endif
 
         
             @else 
@@ -55,6 +70,8 @@
         </ol>
     </div>
     @endif
+
+    
     
 </section>
 

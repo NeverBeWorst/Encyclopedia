@@ -49,7 +49,7 @@ class CreatureController extends Controller
     {
         $creature = new Creature();
         $creature->name = $req->input('name');
-        $creature->img = "img/carts/".$req->input('img');
+        $creature->img = $req->input('img');
         $creature->mythology = $req->input('mythology');
         $creature->habitat = $req->input('habitat');
         $creature->short_description = $req->input('short_description');
@@ -77,7 +77,7 @@ class CreatureController extends Controller
 
         $creature = new Creature();
         $creature->name = $req->input('name');
-        $creature->img = "img/carts/" . $req->img_name . "." . $extension;
+        $creature->img = $req->img_name . "." . $extension;
         $creature->mythology = $req->input('mythology');
         $creature->habitat = $req->input('habitat');
         $creature->short_description = $req->input('short_description');
@@ -106,10 +106,27 @@ class CreatureController extends Controller
         if(!$creature) {
             return redirect()->back()->withErrors("Заявление не найдено");
         }
+
+        $creature_text = preg_split('/\r\n|\r|\n/', $creature->description);
         
         $reviews = Review::all()->where('creature_id', '==', $id);
 
-        return view('gallery_creature', ['creature' => $creature, 'reviews' => $reviews, 'users' => $users]);
+        return view('gallery_creature', ['creature' => $creature, 'reviews' => $reviews, 'users' => $users, 'creature_text' => $creature_text]);
+    }
+
+    public function custom_creature_view(string $id) {
+        $creature = CustomCreature::find($id);
+        $users = User::all();
+
+        if(!$creature) {
+            return redirect()->back()->withErrors("Заявление не найдено");
+        }
+
+        $creature_text = preg_split('/\r\n|\r|\n/', $creature->description);
+
+        $reviews = null;
+
+        return view('gallery_creature', ['creature' => $creature, 'reviews' => $reviews, 'users' => $users, 'creature_text' => $creature_text]);
     }
 
     public function search(SearchRequest $req) {
@@ -122,20 +139,31 @@ class CreatureController extends Controller
         if($mythology) {
             $creatures = $creatures->where('mythology', '==', $mythology);
         }
+
         if ($habitat) {
             $creatures = $creatures->where('habitat', '==', $habitat);
         }
+
         if($name) {
             $creatures = Creature::query();
             $creatures = $creatures->where('name', 'like', '%'.$name.'%');
             $creatures = $creatures->get(); 
         }
+
         if($custom) {
-            if($custom == 'with_custom') {
-                $creatures = $creatures->merge(CustomCreature::all());
+            switch ($custom) {
+                case 'with_custom': 
+                    $creatures = $creatures->merge(CustomCreature::all());
+                    break;
+                case 'only_custom':
+                    $creatures = CustomCreature::all();
+                    break;
+                default:
+                    break;
             }
         }
         
+        $creatures = $creatures->shuffle();
         
         return view('gallery', ['creatures' => $creatures, 'mythology' => $mythology, 'habitat' => $habitat
         , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => $name]);

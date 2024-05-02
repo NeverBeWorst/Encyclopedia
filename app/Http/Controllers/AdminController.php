@@ -98,14 +98,14 @@ class AdminController extends Controller
 
         $creature = new Creature();
         $creature->name = $_creature->name;
-        $creature->img = '/img/carts/' . $img;
+        $creature->img = $img;
         $creature->mythology = $_creature->mythology;
         $creature->habitat = $_creature->habitat;
         $creature->short_description = $_creature->short_description;
         $creature->description = $_creature->description;
         $creature->save();
 
-        $_creature->img = '../../../' . $creature->img;
+        // $_creature->img = '../../../img/carts/' . $creature->img;
 
         return view('admin/proposal_creature', ['creatures' => ProposalCreature::all()]);
     }

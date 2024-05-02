@@ -13,7 +13,7 @@
 
         <main class="content">
         @if ($errors->any())
-            <div >
+            <div>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>

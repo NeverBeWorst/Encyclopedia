@@ -1,22 +1,39 @@
 @font-face {
     font-family: "Sweet Mavka Script";
     font-style: normal;
-    src:url("../fonts/Sweet Mavka Script.otf") ;
+    src:url("../fonts/Sweet Mavka Script.otf") format("opentype");
     
 }
 
 @font-face {
     font-family: "VividSans";
     font-style: normal;
-    src:url("../fonts/VividSans-Regular.ttf") ;
+    src:url("../fonts/VividSans-Regular.ttf") format('truetype') ;
     
 }
 
 @font-face {
     font-family: "Bookerly";
     font-style: normal;
-    src:url("../fonts/Bookerly.ttf") ;
-    
+    src:url("../fonts/Bookerly.ttf") format('truetype') ;
+}
+
+@font-face {
+    font-family: "FantasqueSansMono";
+    font-style: normal;
+    src:url("../fonts/fantasquesansmono-regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "FantasqueSansMono";
+    font-style: bold;
+    src:url("../fonts/fantasquesansmono-bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "MisterBrush";
+    font-style: normal;
+    src:url("../fonts/MisterBrush.ttf") format("truetype");
 }
 
 
@@ -34,10 +51,11 @@ a {
 .content {
     width: 1320px;
     margin: 0 auto;
-    font-family: "Sweet Mavka Script";
+    /* font-family: "Sweet Mavka Script"; */
+    font-family: "Bookerly";
+    /* font-family: "FantasqueSansMono"; */
+    /* font-family: "MisterBrush"; */
 }
-
-
 
 
 
@@ -54,7 +72,8 @@ main {
 
 
 header {
-    font-family: "Sweet Mavka Script";
+    /* font-family: "Sweet Mavka Script"; */
+    font-family: "Bookerly";
     width: 100%;
     background-color: #be8557;
     color: bisque;

@@ -56,7 +56,7 @@ class UserController extends Controller
         $file->storeAs('users/custom_creature/carts/', $img_name . "." . $extension , 'test');
 
         $creature = new CustomCreature;
-        $creature->user = Auth::user()->login;
+        $creature->user_id = Auth::user()->id;
         $creature->name = $req->input('name');
         $creature->img = $img_name . '.' . $extension;
         $creature->habitat = $req->input('habitat');
@@ -65,5 +65,28 @@ class UserController extends Controller
         $creature->save();
 
         return redirect(route('profile'));;
+    }
+
+    public function user_profile(string $id) {
+        $user = User::find($id);
+
+        $custom_creatures = CustomCreature::all()->where('user_id', '==', $user->id);
+
+        return view('user/profile', ['user' => $user, 'custom_creatures' => $custom_creatures]);
+    }
+
+    public function profile() {
+        if(Auth::user()) {
+            $custom_creatures = CustomCreature::all()->where('user_id', '==', Auth::user()->id);
+        }
+        else {
+            $custom_creatures = null;
+        }
+
+        return view('profile', ['custom_creatures' => $custom_creatures]);
+    }
+
+    public function add_avatar() {
+
     }
 }

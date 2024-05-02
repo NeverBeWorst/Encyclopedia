@@ -23,11 +23,15 @@ Route::prefix('/gallery')->group(function () {
 
     Route::post('/', 'App\Http\Controllers\CreatureController@search')->name('search');
 
-    Route::get('/gallery_creature/{id}', 'App\Http\Controllers\CreatureController@creature_view')->name('gallery_creature');
+    Route::get('/creature/{id}', 'App\Http\Controllers\CreatureController@creature_view')->name('gallery.creature');
+
+    Route::get('/custom_creature/{id}', 'App\Http\Controllers\CreatureController@custom_creature_view')->name('gallery.custom_creature');
 });
 
 
-Route::get('/profile', 'App\Http\Controllers\PagesController@profile')->name('profile');
+Route::get('/profile', 'App\Http\Controllers\UserController@profile')->name('profile');
+
+Route::get('/profile/user/{id}', 'App\Http\Controllers\UserController@user_profile')->name('profile.user');    
 
 
 Route::middleware('guest')->group(function () {
@@ -43,24 +47,28 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('login.logout');
 
     Route::name('user.')->group(function () {
-        Route::get('profile/proposal_creature', 'App\Http\Controllers\PagesController@proposal_creature')->name('proposal_creature');
-        Route::post('profile/proposal_creature/submit', 'App\Http\Controllers\UserController@proposal_creature')->name('proposal_creature.submit');
+        Route::prefix('/profile')->group(function () {
+            Route::get('/proposal_creature', 'App\Http\Controllers\PagesController@proposal_creature')->name('proposal_creature');
+            Route::post('/proposal_creature/submit', 'App\Http\Controllers\UserController@proposal_creature')->name('proposal_creature.submit');
 
 
-        Route::get('profile/custom_creature', 'App\Http\Controllers\PagesController@custom_creature')->name('custom_creature');
-        Route::post('profile/custom_creature/submit', 'App\Http\Controllers\UserController@custom_creature')->name('custom_creature.submit');
+            Route::get('/custom_creature', 'App\Http\Controllers\PagesController@custom_creature')->name('custom_creature');
+            Route::post('/custom_creature/submit', 'App\Http\Controllers\UserController@custom_creature')->name('custom_creature.submit');
+
+        
+            Route::get('/user/avatar', 'App\Http\Controllers\UserController@add_avatar')->name('avatar.submit');
+        });
+        
     });
 
     
-
     Route::post('gallery/gallery_creature/{id}/submit', 'App\Http\Controllers\ReviewController@submit')->name('gallery_creature.submit');
-
 
 });
 
 
 Route::middleware('auth', 'admin')->group(function () {
-    Route::name('admin.')->group(function () {
+    Route::name('admin.')->group(function () { 
         Route::prefix('/admin')->group(function () {
             Route::get('/', 'App\Http\Controllers\AdminController@index')->name('main');
             
@@ -86,7 +94,7 @@ Route::middleware('auth', 'admin')->group(function () {
             Route::post('/users/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
             Route::post('/users/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
             Route::post('/users/search', 'App\Http\Controllers\AdminController@users_search')->name('users.search');
-        });
+        }); 
     });
     
     
@@ -98,3 +106,19 @@ Route::middleware('auth', 'admin')->group(function () {
 // В разработке
 //Route::get('login/password_recovery', 'App\Http\Controllers\PagesController@password_recovery')->name('password_recovery');
 //Route::post('login/password_recovery/submit', );
+
+
+
+
+/* Это секрет! Тссс */ 
+
+Route::redirect('/secret', '/minigames/select');
+
+Route::name('minigames.')->group(function () {
+    Route::prefix('/minigames')->group(function () {
+        Route::get('/select');
+    });
+});
+
+
+

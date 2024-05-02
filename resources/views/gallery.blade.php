@@ -15,31 +15,49 @@
     <div class="filtration">
         <form action="{{ route ('search')}}" method="post">
             @csrf
-            
-            <select name="mythology" id="mythology" placeholder="Выбирите мифологию">
-                <option value="" selected disabled hidden>Мифология</option>
-                @foreach($_mythology as $criterion)
-                <option value="{{$criterion}}" @if($criterion == $mythology) selected @endif >{{$criterion}}</option>
-                @endforeach
-            </select>
+            <div class="first_filtration">
+                <div class="select_block">
+                    <div>
+                        <p>Выберите какая мифология вам нужна</p>
+                        <select  name="mythology" id="mythology" placeholder="Выбирите мифологию">
+                            <option value="" selected disabled hidden>Мифология</option>
+                            @foreach($_mythology as $criterion)
+                            <option value="{{$criterion}}" @if($criterion == $mythology) selected @endif >{{$criterion}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности">
-                <option value="" selected disabled hidden>Среда обитания</option>
-                @foreach($_habitat as $criterion)
-                <option value="{{$criterion}}"  @if($criterion == $habitat) selected @endif >{{$criterion}}</option>
-                @endforeach
-            </select>
-            <input class="search" type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
+                    <div>
+                        <p>Выберите какая местоность вам нужна</p>
+                        <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности">
+                            <option value="" selected disabled hidden>Среда обитания</option>
+                            @foreach($_habitat as $criterion)
+                            <option value="{{$criterion}}"  @if($criterion == $habitat) selected @endif >{{$criterion}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
-            <ol>
-                <input name="custom" type="radio" value=""> <p>без</p>
-            
-                <input name="custom" type="radio" value="with_custom"> <p>с</p>
-            
-                <input name="custom" type="radio" value="only_custom"> <p>только</p>
-            </ol>
+                <div class="creature_name">
+                    <p>Введите имя нужной вам сущности</p>
+                    <input  type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
+                </div>
+            </div>
 
-            <input type="submit" value="Найти">
+            <div class="second_filtration">
+                <ol class="">
+                    <p>Добавить пользовательских сущностей?</p>
+                    <p><input name="custom" type="radio" value="" checked>Без них</p>
+                
+                    <p><input name="custom" type="radio" value="with_custom">Добавить</p>
+                
+                    <p><input name="custom" type="radio" value="only_custom">Оставить только пользовательские сущности</p>
+                </ol>
+
+                <input class="search" type="submit" value="Поиск">
+            </div>
+
+            
         </form>
         
         
@@ -55,16 +73,30 @@
         @if($creatures) 
 
         @foreach($creatures as $creature) 
-        <a href="{{ route('gallery_creature', [$creature->id]) }}"> 
-        <div class="creature">
-            
-            <div class="seam">
-                <p class="name">{{$creature->name}}</p>
-                <div class="picture"><img src="{{$creature->img}}" alt="Фото/картина существа"></div> 
-                <p class="short_description">{{$creature->short_description}}</p>
+        @if ($creature->user)
+        <a href="{{ route('gallery.custom_creature', [$creature->id]) }}"> 
+            <div class="creature">
+                <div class="seam">
+                    <p class="name">{{$creature->name}}</p>
+                    <div class="picture"><img src="img/users/custom_creature/carts/{{$creature->img}}" alt="Фото/картина существа"></div> 
+                    <p class="short_description">{{$creature->short_description}}</p>
+                </div>
             </div>
-        </div>
         </a>
+
+        @else
+        <a href="{{ route('gallery.creature', [$creature->id]) }}"> 
+            <div class="creature">
+                <div class="seam">
+                    <p class="name">{{$creature->name}}</p>
+                    <div class="picture"><img src="img/carts/{{$creature->img}}" alt="Фото/картина существа"></div> 
+                    <p class="short_description">{{$creature->short_description}}</p>
+                </div>
+            </div>
+        </a>
+        @endif
+        
+        
         @endforeach
         @endif
 

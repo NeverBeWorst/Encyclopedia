@@ -28,7 +28,7 @@ class ReviewController extends Controller
         $review->text = $req->input('text');
         $review->save();
 
-        return redirect(route('gallery_creature', $id));
+        return redirect(route('gallery.creature', $id));
     }
 
 
