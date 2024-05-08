@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="@yield('style')">
+    @yield('extra_style')
     <title>@yield('pagename')</title>
 </head>
 <body>
@@ -28,5 +29,6 @@
         @include('inc.footer')
     </div>
     
+    @yield('scripts')
 </body>
 </html>

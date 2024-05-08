@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proposal_creatures', function (Blueprint $table) {
+        Schema::create('friends', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('img');
-            $table->string('mythology');
-            $table->string('habitat');
-            $table->string('short_description');
-            $table->text('description');
+            $table->string('sent_from');
+            $table->string('sent_for');
             $table->enum('status', ['waiting', 'confirm', 'reject'])->default('waiting');
             $table->timestamps();
         });
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proposal_creatures');
+        Schema::dropIfExists('friends');
     }
 };

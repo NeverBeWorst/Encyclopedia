@@ -18,6 +18,22 @@
             <!-- <p>Тест отправки на почту</p> -->
             <!-- <a href="">Проверить</a> -->
             <div>
+            @if (Auth::user()->avatar)
+            <img class="avatar" src="../../img/users/avatar/{{ Auth::user()->avatar }}" alt="Аватар">     
+            @else      
+            <img class="avatar" src="../../img/icons/unknown_avatar.png" alt="Аватар">      
+            @endif
+
+            <form method="post" action="{{ route('user.avatar.submit') }}" enctype="multipart/form-data">
+                @csrf 
+                <input type="file" name="image"><br>
+                <button type="submit">Отправить</button>
+            </form>
+
+            <p>{{ Auth::user()->login }}</p>
+            
+        </div>
+            <div>
                 <img src="" alt="">
                 <p>Логин: {{ Auth::user()->login }}</p>
                 <a href="{{route('login.logout')}}">Выйти</a>
@@ -32,6 +48,32 @@
                 </a></li>
             @endforeach
             </ul>
+            @endif
+
+            <br><p>Предложение дружбы:</p>
+            @if ($friends_request)
+                <ul>
+                    @foreach($friends_request as $friend) 
+                    <li>{{ $friend->sent_from }}</li>
+                    @endforeach
+                </ul>
+                <br>
+
+            @else 
+            <p>У вас пока нет предложений дружбы</p>
+            @endif
+
+            <br><p>Друзья:</p>
+            @if ($friends)
+                <ul>
+                    @foreach($friends as $friend) 
+                    <li>{{ $friend->sent_from }}</li>
+                    @endforeach
+                </ul>
+                <br>
+
+            @else 
+            <p>У вас пока нет предложений дружбы</p>
             @endif
 
         

@@ -1,0 +1,20 @@
+.card {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    background-color: #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card img {
+    display: none;
+    object-fit: cover; 
+    width: 100px;
+    height: 100px;
+}
+
+.flipped img {
+    display: block;
+}
+

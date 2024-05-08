@@ -7,7 +7,7 @@
         <li><a href="{{route('profile')}}">Профиль</a></li>
         <li>
             @if(!auth()->user())  
-                <a href="{{route('login')}}">Авторизация</a>  
+                <a href="{{route('login')}}">Войти</a>  
             
             @else 
                 <a href="{{route('login.logout')}}">Выйти</a> 

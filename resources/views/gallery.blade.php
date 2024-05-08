@@ -51,7 +51,7 @@
                 
                     <p><input name="custom" type="radio" value="with_custom">Добавить</p>
                 
-                    <p><input name="custom" type="radio" value="only_custom">Оставить только пользовательские сущности</p>
+                    <p><input name="custom" type="radio" value="only_custom">Только пользовательские сущности</p>
                 </ol>
 
                 <input class="search" type="submit" value="Поиск">

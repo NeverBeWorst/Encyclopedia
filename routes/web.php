@@ -55,8 +55,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/custom_creature', 'App\Http\Controllers\PagesController@custom_creature')->name('custom_creature');
             Route::post('/custom_creature/submit', 'App\Http\Controllers\UserController@custom_creature')->name('custom_creature.submit');
 
-        
-            Route::get('/user/avatar', 'App\Http\Controllers\UserController@add_avatar')->name('avatar.submit');
+
+            Route::post('/avatar', 'App\Http\Controllers\UserController@add_avatar')->name('avatar.submit');
+
+
+            Route::post('/user/{id}/friend_request', 'App\Http\Controllers\UserController@friend_request')->name('friend_request.submit');
+
+            Route::post('/friends/{id}/confirm', 'App\Http\Controllers\UserController@confirm_friend_request')->name('friend_request.confirm');
+            Route::post('/friends/{id}/reject', 'App\Http\Controllers\UserController@reject_friend_request')->name('friend_request.reject'); 
         });
         
     });
@@ -112,11 +118,17 @@ Route::middleware('auth', 'admin')->group(function () {
 
 /* Это секрет! Тссс */ 
 
-Route::redirect('/secret', '/minigames/select');
 
-Route::name('minigames.')->group(function () {
-    Route::prefix('/minigames')->group(function () {
-        Route::get('/select');
+
+Route::redirect('/secret', '/minigames/select')->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::name('minigames.')->group(function () {
+        Route::prefix('/minigames')->group(function () {
+            Route::get('/select', 'App\Http\Controllers\Minigames\MinigamesController@select')->name('select');
+
+            Route::get('/game/find_pair', 'App\Http\Controllers\Minigames\MinigamesController@find_pair')->name('find_pair');
+        });
     });
 });
 
