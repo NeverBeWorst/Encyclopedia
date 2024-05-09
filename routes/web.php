@@ -120,7 +120,7 @@ Route::middleware('auth', 'admin')->group(function () {
 
 
 
-Route::redirect('/secret', '/minigames/select')->middleware('auth');
+Route::redirect('/secret', '/minigames/select')->middleware('auth')->name('secret');
 
 Route::middleware('auth')->group(function () {
     Route::name('minigames.')->group(function () {

@@ -11,6 +11,8 @@
 @section('content')
 
 
+
+
 <section>
     <div class="filtration">
         <form action="{{ route ('search')}}" method="post">
