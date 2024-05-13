@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +97,18 @@ Route::middleware('auth', 'admin')->group(function () {
             });
             
     
+            Route::prefix('/commands')->group(function () {
+
+                Route::post('/refresh', function () {
+                    $exitCode = Artisan::call('migrate:refresh');
+                    return redirect()->back();
+                })->name('refresh');
+
+                Route::post('/do_admin', function (Request $req) {
+                    $exitCode = Artisan::call('DoAdmin', ['name' => $req->name]);
+                    return redirect()->back();
+                })->name('do_admin');
+            });
     
             Route::get('/users', 'App\Http\Controllers\AdminController@users')->name('users');
             Route::post('/users/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');

@@ -28,8 +28,6 @@ class AdminController extends Controller
         return view('admin', ['users' => $users, '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat]);
     }
 
-    //
-
     public function users() {
         $users = User::all();
 
@@ -83,45 +81,34 @@ class AdminController extends Controller
     public function confirm_proposal(string $id) {
         $_creature = ProposalCreature::find($id);
 
-        $_creature->status = 'confirm';
-
-        $_creature->save();
+        ProposalCreature::where('id', $id)->update(['status' => 'confirm']);
 
         $img = $_creature->img;
 
-        //$extension = last( explode('.', $img ) );
 
         $new_path =  public_path() . '/img/carts/' . $img;
         $old_path =  public_path() . '/img/users/proposal_creature/carts/' . $img;
         $move = File::move($old_path, $new_path);
         
-
-        $creature = new Creature();
-        $creature->name = $_creature->name;
-        $creature->img = $img;
-        $creature->mythology = $_creature->mythology;
-        $creature->habitat = $_creature->habitat;
-        $creature->short_description = $_creature->short_description;
-        $creature->description = $_creature->description;
-        $creature->save();
-
-        // $_creature->img = '../../../img/carts/' . $creature->img;
+        $creature = Creature::create([
+            'name' => $_creature->name,
+            'img' => $img,
+            'mythology' => $_creature->mythology,
+            'habitat' => $_creature->habitat,
+            'short_description' => $_creature->short_description,
+            'description' => $_creature->description,
+        ]);
 
         return view('admin/proposal_creature', ['creatures' => ProposalCreature::all()]);
     }
 
 
     public function reject_proposal(string $id) {
-        $creature = ProposalCreature::find($id);
-
-        $creature->status = 'reject';
-
-        $creature->save();
+        ProposalCreature::where('id', $id)->update(['status' => 'reject']);
 
         return view('admin/proposal_creature', ['creatures' => ProposalCreature::all()]);
     }
 
-    //
 
     public function custom_creatures() {
         return view('admin/custom_creature', ['creatures' => CustomCreature::all()]);

@@ -102,6 +102,13 @@
     <div>
         <p><a href="{{ route('admin.custom_creature') }}">Список пользовательских существ</a></p>
     </div>
+
+    <br><br><br>
+    <div>
+        <h2>Острожно!!!!</h2>
+        <form action="{{ route('admin.refresh') }}" method="post">@csrf<input type="submit" value="СТЕРЕТЬ БАЗУ ДАННЫХ"></form>
+        <form action="{{ route('admin.do_admin') }}" method="post">@csrf <input type="text" name="name"><input type="submit" value="Добавить админа"></form>
+    </div>
 </section>
 
 @endsection

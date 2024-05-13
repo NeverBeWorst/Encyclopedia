@@ -47,14 +47,8 @@ class CreatureController extends Controller
 
     public function submit(CreatureRequest $req)
     {
-        $creature = new Creature();
-        $creature->name = $req->input('name');
-        $creature->img = $req->input('img');
-        $creature->mythology = $req->input('mythology');
-        $creature->habitat = $req->input('habitat');
-        $creature->short_description = $req->input('short_description');
-        $creature->description = $req->input('description');
-        $creature->save();
+        $creature = Creature::create($req->all());
+
         return redirect(route('admin.main'));
     }
 
@@ -75,18 +69,12 @@ class CreatureController extends Controller
         $extension = $req->file('image')->extension();
         $file->storeAs('carts', $req->img_name . "." . $extension , 'test');
 
-        $creature = new Creature();
-        $creature->name = $req->input('name');
-        $creature->img = $req->img_name . "." . $extension;
-        $creature->mythology = $req->input('mythology');
-        $creature->habitat = $req->input('habitat');
-        $creature->short_description = $req->input('short_description');
-        $creature->description = $req->input('description');
-        $creature->save();
+        $creature = Creature::create([
+            'img' => $req->img_name . "." . $extension,
+        ] + $req->all());
+
         return redirect(route('admin.main'));
     }
-
-    
 
     public function index(Request $req) {
         $creatures = Creature::all();
@@ -125,6 +113,8 @@ class CreatureController extends Controller
         $creature_text = preg_split('/\r\n|\r|\n/', $creature->description);
 
         $reviews = null;
+
+        $creature->img = '../users/custom_creature/carts/' .  $creature->img;
 
         return view('gallery_creature', ['creature' => $creature, 'reviews' => $reviews, 'users' => $users, 'creature_text' => $creature_text]);
     }

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Creature extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'img',
+        'mythology',
+        'habitat',
+        'short_description',
+        'description'
+    ];
 }

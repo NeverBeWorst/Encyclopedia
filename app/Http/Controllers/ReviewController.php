@@ -21,12 +21,12 @@ class ReviewController extends Controller
             return redirect()->back()->withErrors('');
         }
 
-        $review = new Review();
-        $review->user_id = $user->id;
-        $review->user_name = $user->login;
-        $review->creature_id = $id;
-        $review->text = $req->input('text');
-        $review->save();
+        $review = Review::create([
+            'user_id' => $user->id,
+            'user_name' => $user->login,
+            'creature_id' => $id,
+            'text' => $req->input('text'),
+        ]);
 
         return redirect(route('gallery.creature', $id));
     }

@@ -31,16 +31,9 @@ class UserController extends Controller
         $extension = $req->file('image')->extension();
         $file->storeAs('users/proposal_creature/carts/', $img_name . "." . $extension , 'test');
 
-        $creature = new ProposalCreature;
-        $creature->name = $req->input('name');
-
-        $creature->img = $img_name . '.' . $extension;
-
-        $creature->mythology = $req->input('mythology');
-        $creature->habitat = $req->input('habitat');
-        $creature->short_description = $req->input('short_description');
-        $creature->description = $req->input('description');
-        $creature->save();
+        $creature = ProposalCreature::create([
+            'img' => $img_name . '.' . $extension,
+        ] + $req->all());
 
         return redirect(route('profile'));;
     }
@@ -56,14 +49,10 @@ class UserController extends Controller
         $extension = $req->file('image')->extension();
         $file->storeAs('users/custom_creature/carts/', $img_name . "." . $extension , 'test');
 
-        $creature = new CustomCreature;
-        $creature->user_id = Auth::user()->id;
-        $creature->name = $req->input('name');
-        $creature->img = $img_name . '.' . $extension;
-        $creature->habitat = $req->input('habitat');
-        $creature->short_description = $req->input('short_description');
-        $creature->description = $req->input('description');
-        $creature->save();
+        $creature = CustomCreature::create([
+            'user_id' => Auth::user()->id,
+            'img' => $img_name . '.' . $extension,
+        ] + $req->all());
 
         return redirect(route('profile'));;
     }
