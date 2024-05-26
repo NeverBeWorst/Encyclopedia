@@ -10,12 +10,9 @@
 
 @section('content')
 
-
-
-
 <section>
     <div class="filtration">
-        <form action="{{ route ('search')}}" method="post">
+        <form action="{{ route ('search')}}" method="post" id="searchForm">
             @csrf
             <div class="first_filtration">
                 <div class="select_block">
@@ -42,7 +39,10 @@
 
                 <div class="creature_name">
                     <p>Введите имя нужной вам сущности</p>
-                    <input  type="text" name="name" value="{{ $name }}" placeholder="Введите имя">
+                    <input type="text" id="searchText" name="name" value="{{ $name }}" placeholder="Введите имя">
+                    <ol id="suggestions">
+                        
+                    </ol>
                 </div>
             </div>
 
@@ -108,6 +108,54 @@
     </div>
 
     
-    
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('searchText');
+    var suggestionsContainer = document.getElementById('suggestions');
+    var searchForm = document.getElementById('searchForm');
+
+    if (searchInput && suggestionsContainer) {
+        
+        searchInput.addEventListener('input', function() {
+            var searchText = searchInput.value.trim();
+            if (searchText.length > 0) {
+                fetchSuggestions(searchText);
+            } else {
+                suggestionsContainer.innerHTML = '';
+            }
+        });
+
+        suggestionsContainer.addEventListener('click', function(event) {
+            if (event.target.tagName === 'LI') {
+                searchInput.value = event.target.textContent;
+                suggestionsContainer.innerHTML = ''; // Очистка подсказок после выбора
+                searchForm.submit(); // Отправка формы
+            }
+        });
+    }
+
+    function fetchSuggestions(searchText) {
+        fetch("{{ route('search.suggestions') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ searchText: searchText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            suggestionsContainer.innerHTML = '';
+            data.forEach(function(suggestion) {
+                var suggestionElement = document.createElement('li');
+                suggestionElement.textContent = suggestion;
+                suggestionsContainer.appendChild(suggestionElement);
+            });
+        });
+    }
+});
+</script>
+
 @endsection

@@ -28,6 +28,8 @@ Route::prefix('/gallery')->group(function () {
     Route::get('/creature/{id}', 'App\Http\Controllers\CreatureController@creature_view')->name('gallery.creature');
 
     Route::get('/custom_creature/{id}', 'App\Http\Controllers\CreatureController@custom_creature_view')->name('gallery.custom_creature');
+
+    Route::post('/suggestions', 'App\Http\Controllers\CreatureController@suggestions')->name('search.suggestions');
 });
 
 

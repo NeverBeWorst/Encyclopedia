@@ -159,5 +159,18 @@ class CreatureController extends Controller
         , '_mythology' => CreatureController::$_mythology, '_habitat' => CreatureController::$_habitat, 'name' => $name]);
     }
 
-    
+    public function suggestions(SearchRequest $req) {
+        $creatures = Creature::all();
+        $name = $req->searchText;
+        $suggestions = [];
+        if($name) {
+            $creatures = Creature::query();
+            $creatures = $creatures->where('name', 'like', '%'.$name.'%');
+            $creatures = $creatures->get(); 
+        }
+
+        $suggestions = $creatures->pluck('name')->values();
+
+        return response()->json($suggestions);
+    }
 }

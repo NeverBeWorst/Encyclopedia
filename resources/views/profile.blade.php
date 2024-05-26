@@ -50,35 +50,44 @@
         </li>
 
         <li>
-            <div class="about_me">
-                <p>Обо мне</p>
-                <div class="text">
-                    <p>Текст обо мне.</p>
+            <div>
+                <div class="about_me">
+                    <p>Обо мне</p>
+                    <div class="text">
+                        <p>Текст обо мне.</p>
+                    </div>
                 </div>
             </div>
+            
 
             <ul class="cards">
                 <a href="{{ route('user.proposal_creature') }}">
                     <li class="card">
-                        <p>Кого-то не хватает?</p>
-                        <img src="../img/icons/free-icon-dragons-4214982.png" alt="" class="card_icon">
-                        <p>Помогите нам дополнить нашу “Мифическую Энциклопедию”</p>
+                        <div>
+                            <p class="card_title">Кого-то не хватает?</p>
+                            <img src="../img/icons/free-icon-dragons-4214982.png" alt="" class="card_icon">
+                            <p class="card_text">Помогите нам дополнить нашу “Мифическую Энциклопедию”</p>
+                        </div>
                     </li>
                 </a>
 
                 <a href="{{ route('user.custom_creature') }}">
                     <li class="card">
-                        <p>Создайте своего</p>
-                        <img src="../img/icons/free-icon-herne-the-hunter-4924605.png" alt="" class="card_icon">
-                        <p>Создайте своё свирепое или милое существо. Включите воображение!</p>
+                        <div>
+                            <p class="card_title">Создайте своего</p>
+                            <img src="../img/icons/free-icon-herne-the-hunter-4924605.png" alt="" class="card_icon">
+                            <p class="card_text">Создайте своё свирепое или милое существо.<br />Включите воображение!</p>
+                        </div>
                     </li>
                 </a>
 
                 <a href="">
                     <li class="card">
-                        <p>В разработке</p>
-                        <img src="../img/icons/free-icon-gorgon-5240966.png" alt="" class="card_icon">
-                        <p>Находится в разработке</p>
+                        <div>
+                            <p class="card_title">В разработке</p>
+                            <img src="../img/icons/free-icon-gorgon-5240966.png" alt="" class="card_icon">
+                            <p class="card_text">Находится в разработке</p>
+                        </div>
                     </li>
                 </a>
             </ul>
@@ -86,7 +95,7 @@
 
         <li>
             <div class="friends_box">
-                <div class="my_friend">
+                <div class="my_friends">
                     <p>Мои друзья</p>
                     <ol>
                         <li>Ринат</li>

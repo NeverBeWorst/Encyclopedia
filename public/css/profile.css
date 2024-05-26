@@ -1,3 +1,7 @@
+* {
+    list-style-type: none;
+}
+
 p, main a {
     font-size: 17pt;
 }
@@ -5,7 +9,6 @@ p, main a {
 p {
     font-size: 20px;
     color: #FFE4C4;
-    
 }
 
 .flex {
@@ -14,12 +17,9 @@ p {
     padding-top: 20px;
 }
 
-img {
-    width: 100px;
-}
 
 .users_info {
-    list-style-type:  none;
+    list-style-type: none;
     margin: 0 50px ;
 }
 
@@ -122,3 +122,98 @@ div.notice {
     margin-right: 10px;
 }
 
+.about_me {
+    width: 400px;
+    min-width: 400px;
+    /* min-height: 100px; */
+    background-color: #7E513E;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.about_me p {
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.about_me .text {
+    width: 380px;
+    background-color: #7E513E;
+    border: 3px solid #FFE4C4;
+    min-height: 150px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.about_me .text p {
+    font-size: 15px;
+    margin: 5px;
+}
+
+.cards {
+    width: 660px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.cards .card {
+    width: 200px;
+    height: 250px;
+    display: block;
+    background-color: #7E513E;
+    border-radius: 20px;
+    margin-top: 0;
+}
+
+.cards .card div {
+    margin: 10px;
+    border-radius: 15px;
+    border: dashed 2px #492F24;
+    width: 180px;
+    height: 230px;
+}
+
+.cards .card .card_title {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.cards .card img.card_icon {
+    width: 80px;
+    height: 80px;
+    border: solid 2px #FFE4C4;
+    border-radius: 10px;
+    margin: 10px 50px;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+
+.cards .card .card_text {
+    width: 70%;
+    font-size: 13px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.friends_box {
+    width: 550px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.friends_box div {
+    width: 260px;
+    background-color: #7E513E;
+}
+
+.friends_box div p {
+    font-size: 20px;
+}
+
+.friends_box div ol {
+    width: 240px;
+    border: solid #FFE4C4;
+}
