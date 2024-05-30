@@ -40,6 +40,9 @@
             <a href="{{route('profile')}}">
                 Перейти в профиль
             </a>
+            <a href="{{route('image.generator')}}">
+                <p>ИИ</p>
+            </a>
         </p>
     </div>
 </section>
