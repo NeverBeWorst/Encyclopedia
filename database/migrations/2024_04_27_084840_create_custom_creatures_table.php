@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('custom_creatures', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('img');
             $table->string('habitat');

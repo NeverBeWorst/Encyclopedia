@@ -16,8 +16,11 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/image-generator', 'App\Http\Controllers\ImageGeneratorController@index')->name('image.generator');
-Route::post('/generate-image', 'App\Http\Controllers\ImageGeneratorController@generate' )->name('generate.image');
-Route::post('/save-image', 'App\Http\Controllers\ImageGeneratorController@save' )->name('save.image');
+
+Route::post('/generate-image', 'App\Http\Controllers\ImageGeneratorController@generate')->name('generate.image');
+Route::post('/save-image', 'App\Http\Controllers\ImageGeneratorController@save')->name('save.image');
+
+
 
 Route::redirect('/', '/home');
 

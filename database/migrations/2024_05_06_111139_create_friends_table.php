@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('friends', function (Blueprint $table) {
             $table->id();
-            $table->string('sent_from');
-            $table->string('sent_for');
+            $table->unsignedBigInteger('sent_from');
+            $table->foreign('sent_from')->references('id')->on('users');
+            $table->unsignedBigInteger('sent_for');
+            $table->foreign('sent_for')->references('id')->on('users');
             $table->enum('status', ['waiting', 'confirm', 'reject'])->default('waiting');
             $table->timestamps();
         });

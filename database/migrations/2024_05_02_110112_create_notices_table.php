@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->string('sent_from');
-            $table->string('sent_for');
+            $table->unsignedBigInteger('sent_from');
+            $table->foreign('sent_from')->references('id')->on('users');
+            $table->unsignedBigInteger('sent_for');
+            $table->foreign('sent_for')->references('id')->on('users');
             $table->text('text');
             $table->enum('action', ['notice', 'congratulations' , 'warning', 'ban']);
             $table->timestamps();

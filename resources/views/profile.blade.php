@@ -36,7 +36,13 @@
                         <a href="{{ route('secret') }}"><img src="../img/icons/free-icon-mermaid-7931829.png" alt=""></a>
                     </div>
                     
-
+                    @if(Auth::user() )
+                    <div class="buttons">
+                        <div class="sign_up">
+                            <a href="{{route('login.logout')}}"><p>Выйти</p></a>
+                        </div>
+                    </div>
+                    @else
                     <div class="buttons">
                         <a href="{{ route('login') }}"><p class="sign_in">Авторизация</p></a>
 
@@ -44,6 +50,7 @@
                             <a href="{{ route('reg') }}"><p>Регистрация</p></a>
                         </div>
                     </div>
+                    @endif
                 </div>
                 
             </div> 
