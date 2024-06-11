@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Storage;
 class ImageGeneratorController extends Controller
 {
     public static $AI_models = [
-        'sd-community/sdxl-flash',
-        'stabilityai/stable-diffusion-xl-base-1.0',
+        'sd-community/sdxl-flash', //крцтой но с багами
+        'stabilityai/stable-diffusion-xl-base-1.0', //качество среднее, быстроват, с багами
+        'CompVis/stable-diffusion-v1-4', //очень долгий и детализированный
+        'SG161222/Realistic_Vision_V4.0_noVAE', //долгий, детализированный
+        'fluently/Fluently-XL-v4', //Сверхдетализированный, сверхдолгий
     ];
 
 
@@ -32,7 +35,7 @@ class ImageGeneratorController extends Controller
                     'Authorization' => 'Bearer ' . $apiKey,
                 ],
                 'json' => [
-                    'inputs' => 'mystical creature, ' . $description,
+                    'inputs' => $description,
                 ],
             ]);
 
