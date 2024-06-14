@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Creature;
 use App\Models\ProposalCreature;
 use App\Models\CustomCreature;
+use App\Models\Notice;
 
 use Session;
 use File;
@@ -53,18 +54,40 @@ class AdminController extends Controller
 
 
     public function user_block(string $id) {
-        return redirect(route('admin/users'));
+        $user = User::find($id);
+
+        $user->status = 'ban';
+        $user->save();
+
+        $notice = Notice::create([
+            'sent_from' => 'Администрация',
+            'sent_for' => $user->login,
+            'text' => 'Вы были заблокированы админестрацией.',
+            'action' => 'ban',
+        ]);
+
+        return redirect()->route('admin.users');
     }
 
+    public function user_unblock(string $id) {
+        $user = User::find($id);
+
+        $user->status = 'active';
+        $user->save();
+
+        $notice = Notice::create([
+            'sent_from' => 'Администрация',
+            'sent_for' => $user->login,
+            'text' => 'Вы были разблокированы админестрацией.',
+            'action' => 'congratulations',
+        ]);
+        return redirect()->route('admin.users');
+    }
 
     public function user_delete(Request $req, string $id) {
         User::destroy($id);
-        return redirect(route('admin/users'));
+        return redirect()->route('admin.users');
     }
-
-
-    //
-
 
     public function proposal_creature() {
         $creatures = ProposalCreature::all()->where('status', '==', 'waiting');

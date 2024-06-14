@@ -4,9 +4,7 @@
 {{asset('css/admin.css')}}
 @endsection
 
-@section('pagename')
-Админка
-@endsection
+@section('pagename', 'Админка')
 
 @section('content')
 

@@ -4,9 +4,7 @@
 {{asset('css/profile.css')}}
 @endsection
 
-@section('pagename')
-{{ $user->login }}
-@endsection
+@section('pagename', {{ $user->login }})
 
 @section('content')
 <section>

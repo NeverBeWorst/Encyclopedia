@@ -4,9 +4,7 @@
 {{asset('css/.css')}}
 @endsection
 
-@section('pagename')
-Пользовательское существо
-@endsection
+@section('pagename', 'Пользовательское существо')
 
 @section('content')
 <section>
@@ -16,7 +14,7 @@
             <div class="form_block">
                 <div>
                     <input type="text" name="name" id="name" placeholder="Введите имя" required><br>
-                    <input type="file" name="image"><br>
+                    <input type="hidden" name="image" value="{{ $image }}"><br>
                     
                     <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности" required>
                         <option value="" selected disabled hidden>Среда обитания</option>

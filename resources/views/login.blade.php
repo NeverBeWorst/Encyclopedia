@@ -4,9 +4,7 @@
 {{asset('css/login.css')}}
 @endsection
 
-@section('pagename')
-Авторизация
-@endsection
+@section('pagename', 'Авторизация')
 
 @section('content')
 <section>

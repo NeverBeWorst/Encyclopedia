@@ -19,6 +19,6 @@ class RegisterController extends Controller
             'password' => bcrypt($req->password),
         ] + $req->all());
 
-        return redirect(route('profile'));
+        return redirect(route('login'));
     }
 }

@@ -4,9 +4,7 @@
 {{asset('css/.css')}}
 @endsection
 
-@section('pagename')
-Пользовательское существо
-@endsection
+@section('pagename', 'Пользовательское существо')
 
 @section('content')
 <section>

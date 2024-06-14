@@ -4,9 +4,7 @@
 {{asset('css/admin/proposal_creature.css')}}
 @endsection
 
-@section('pagename')
-Предложения добавления сущности
-@endsection
+@section('pagename', 'Предложения добавления сущности')
 
 @section('content')
 

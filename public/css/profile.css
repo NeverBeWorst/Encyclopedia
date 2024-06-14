@@ -11,6 +11,10 @@ p {
     color: #FFE4C4;
 }
 
+footer p {
+    color: black;
+}
+
 .flex {
     display: flex;
     justify-content: space-around;
@@ -26,7 +30,7 @@ p {
 .users_info li {
     display: flex;
     justify-content: space-between;
-    border: solid 1px black;
+    /* border: solid 1px black; */
     margin-top: 50px;
 }
 
@@ -61,6 +65,7 @@ div.notice {
     border-radius: 10px;
     justify-content: space-around;
     margin-left: 20px;
+    /* overflow: scroll; */
 }
 
 .notice img {
@@ -164,6 +169,7 @@ div.notice {
     background-color: #7E513E;
     border-radius: 20px;
     margin-top: 0;
+    padding-top: 1px;
 }
 
 .cards .card div {
@@ -216,4 +222,79 @@ div.notice {
 .friends_box div ol {
     width: 240px;
     border: solid #FFE4C4;
+}
+
+.creatures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+li.creature {
+    border: solid 1px black;
+    width: 92%;
+    border-radius: 10%;
+    padding: 10px;
+    /* background-color: #7e513e; */
+    /* background-image: url('../img/leather-brown-background-1.jpg');  */
+
+    background-image: radial-gradient(#664031, #492f24, #7e513e);
+    background-repeat: repeat;
+    color: bisque;
+    border: solid #492f24 1px;
+    transition: width 0.5s cubic-bezier(0, 0, 1, 1);
+}
+
+.creature .seam {
+    padding: 10px;
+    border: dashed #3f2920 2px;
+    border-radius: 10%;
+    height: 94%;
+}
+
+.creature .name {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+.creature .picture img {
+    width: 250px;
+    height: 250px;
+    border-radius: 10%;
+    border: solid 2px bisque;
+    object-fit:cover;
+}
+
+.creature .short_description {
+    margin: 5px;
+    font-size: 14pt;
+    text-align: center;
+}
+
+.creature a {
+    color: bisque;
+    font-size: 14pt;
+    text-align: right;
+}
+
+.creature a:hover {
+    color: #201410;
+    border-bottom: #201410 solid 2px;
+    border-radius: 10%;
+    transition: 0.2s;
+}
+
+.creature:hover {
+    transition: 0.5s;
+    box-shadow: 5px 15px 6px #492f24 ;
+    transform: scale(1.04, 1.04)
+}
+
+.my_custom_creatures h2 {
+    text-align: center;
+    margin: 20px 0;
 }

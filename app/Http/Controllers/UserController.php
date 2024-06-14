@@ -13,6 +13,8 @@ use App\Models\ProposalCreature;
 use App\Models\CustomCreature;
 use App\Models\User;
 use App\Models\Friends;
+use App\Models\Review;
+use App\Models\Notice;
 
 use Carbon\Carbon;
 
@@ -43,15 +45,15 @@ class UserController extends Controller
             return redirect()->back()->withErrors('Файл не найден');
         }
 
-        $img_name = Auth::user()->login . Carbon::now()->format('y-m-d-h-m-s') ;
+        // $img_name = Auth::user()->login . Carbon::now()->format('y-m-d-h-m-s') ;
 
-        $file = $req->file('image');
-        $extension = $req->file('image')->extension();
-        $file->storeAs('users/custom_creature/carts/', $img_name . "." . $extension , 'test');
+        // $file = $req->file('image');
+        // $extension = $req->file('image')->extension();
+        // $file->storeAs('users/custom_creature/carts/', $img_name . "." . $extension , 'test');
 
         $creature = CustomCreature::create([
             'user_id' => Auth::user()->id,
-            'img' => $img_name . '.' . $extension,
+            'img' => $req->image,
         ] + $req->all());
 
         return redirect(route('profile'));;
@@ -66,25 +68,30 @@ class UserController extends Controller
     }
 
     public function profile() {
+        $custom_creatures = null;
+        $friends = null;
+        $friends_request = null;
+        $reviews = null;
+
         if(Auth::user()) {
             $custom_creatures = CustomCreature::all()->where('user_id', '==', Auth::user()->id);
             $friends = Friends::query()->where('sent_for', Auth::user()->login)->orWhere('sent_from', Auth::user()->login)->get();
             
             $friends =  $friends->where('status', '==', 'confirm');
 
-
             $friends_request = Friends::all()->where('sent_for', Auth::user()->login);
             $friends_request = $friends_request->where('status', '==', 'waiting');
 
             $users = User::all()->where('login', '==', Friends::query()->where('sent_for', Auth::user()->login)->orWhere('status', '==', 'waiting'));
-        }
-        else {
-            $custom_creatures = null;
-            $friends = null;
-            $friends_request = null;
+
+            $reviews = Review::all()->where('user_id', '==', Auth::user()->login);
         }
 
-        return view('profile', ['custom_creatures' => $custom_creatures, 'friends_request' =>  $friends_request, 'friends' => $friends]);
+        return view('profile', ['custom_creatures' => $custom_creatures, 'friends_request' =>  $friends_request, 'friends' => $friends, 'reviews' => $reviews]);
+    }
+
+    public function avatar() {
+        return view('user/avatar');
     }
 
     public function add_avatar(AvatarRequest $req) {
@@ -101,7 +108,15 @@ class UserController extends Controller
         $user->avatar = $user->login . "." . $extension;
         $user->save();
 
-        return redirect()->back();
+        return redirect()->route('profile');
+    }
+
+    public function about_me() {
+        return view('user/about_me');
+    }
+
+    public function add_about_me() {
+        return view('user/about_me');
     }
 
     public function friend_request(string $id) {

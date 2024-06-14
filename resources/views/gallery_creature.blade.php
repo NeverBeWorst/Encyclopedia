@@ -4,9 +4,7 @@
 {{asset('css/gallery_creature.css')}}
 @endsection
 
-@section('pagename')
-{{$creature->name}}
-@endsection
+@section('pagename', {{$creature->name}} )
 
 @section('content')
 <section>
@@ -18,7 +16,7 @@
         <div class="picture">
             @if ($creature->user)
             <img src="../../img/users/custom_creature/carts/{{$creature->img}}" alt="Фото/картина существа"> 
-            <a class="download_icon" href="../../img/users/custom_creature/carts/{{$creature->img}}" download><img src="../../img/icons/download.png" alt="Скачать"></a>
+            <a class="download_icon" href="{{ asset('img/users/custom_creature/carts/' . $creature->img) }}" download><img src="{{ asset('img/icons/download.png') }}" alt="Скачать"></a>
 
             @else
             <img src="../../img/carts/{{$creature->img}}" alt="Фото/картина существа"> 
@@ -29,7 +27,13 @@
 
         <div class="short_info">
             <p class="name">{{$creature->name}}</p>
+
+            @if ($creature->user_id)
+            <div><p>От пользователя: </p> <a href="{{ route('profile.user', [$creature->user_id] ) }}">{{ $autor->login }}</a> </div>
+            @else
             <div><p>Мифология: </p><p>{{$creature->mythology}}</p></div>
+            @endif
+
             <div><p>Краткое сведение: </p><p class="short_description">{{$creature->short_description}}</p></div>
             <div><p>Место обитания: </p><p>{{$creature->habitat}}</p></div>
         </div>

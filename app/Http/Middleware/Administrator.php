@@ -19,9 +19,8 @@ class Administrator
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::user()->role != 'admin') {
-            return redirect('login');
+            return redirect('login')->withError('У вас нет прав админестратора.');
         }
-
         return $next($request);
     }
 }

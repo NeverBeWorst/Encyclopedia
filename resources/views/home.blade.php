@@ -4,9 +4,7 @@
 {{asset('css/home.css')}}
 @endsection
 
-@section('pagename')
-Главная
-@endsection
+@section('pagename', 'Главная')
 
 @section('content')
 <section class="about_us">

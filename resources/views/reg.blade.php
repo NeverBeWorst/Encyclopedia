@@ -4,9 +4,7 @@
 {{asset('css/reg.css')}}
 @endsection
 
-@section('pagename')
-Регистрация
-@endsection
+@section('pagename', 'Регистрация')
 
 @section('content')
 <section>

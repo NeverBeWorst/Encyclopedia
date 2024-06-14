@@ -4,9 +4,7 @@
 {{asset('css/gallery.css')}}
 @endsection
 
-@section('pagename')
-Галерея
-@endsection
+@section('pagename', 'Галерея')
 
 @section('content')
 
@@ -75,7 +73,7 @@
         @if($creatures) 
 
         @foreach($creatures as $creature) 
-        @if ($creature->user)
+        @if ($creature->user_id)
         <a href="{{ route('gallery.custom_creature', [$creature->id]) }}"> 
             <div class="creature">
                 <div class="seam">

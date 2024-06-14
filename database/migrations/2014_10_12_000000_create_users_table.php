@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
+
 return new class extends Migration
 {
     /**
@@ -17,8 +20,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('role', ['user', 'admin'])->default('user');
-            $table->string('avatar')->default('');
-            $table->enum('status', ['active', 'ban']);
+            $table->string('avatar')->default('')->unique();
+            $table->string('about_me')->default('');
+            $table->enum('status', ['active', 'ban'])->default('active');
             $table->rememberToken();
             $table->timestamps();
         });

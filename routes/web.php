@@ -15,9 +15,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/image-generator', 'App\Http\Controllers\ImageGeneratorController@index')->name('image.generator');
-Route::post('/generate-image', 'App\Http\Controllers\ImageGeneratorController@generate' )->name('generate.image');
-Route::post('/save-image', 'App\Http\Controllers\ImageGeneratorController@save' )->name('save.image');
 
 Route::redirect('/', '/home');
 
@@ -50,9 +47,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/login/submit', 'App\Http\Controllers\LoginController@index')->name('login.submit');
 });
 
+Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('login.logout')->middleware('auth');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('login.logout');
+Route::middleware('auth', 'status')->group(function () {
 
     Route::name('user.')->group(function () {
         Route::prefix('/profile')->group(function () {
@@ -63,8 +60,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/custom_creature', 'App\Http\Controllers\PagesController@custom_creature')->name('custom_creature');
             Route::post('/custom_creature/submit', 'App\Http\Controllers\UserController@custom_creature')->name('custom_creature.submit');
 
+            Route::get('/image-generator', 'App\Http\Controllers\ImageGeneratorController@index')->name('image.generator');
+            Route::post('/generate-image', 'App\Http\Controllers\ImageGeneratorController@generate' )->name('generate.image');
+            Route::post('/save-image', 'App\Http\Controllers\ImageGeneratorController@save' )->name('save.image');
 
-            Route::post('/avatar', 'App\Http\Controllers\UserController@add_avatar')->name('avatar.submit');
+
+            Route::get('/avatar', 'App\Http\Controllers\UserController@avatar')->name('avatar');
+            Route::post('/avatar/submit', 'App\Http\Controllers\UserController@add_avatar')->name('avatar.submit');
+
+            Route::get('/about_me', 'App\Http\Controllers\UserController@about_me')->name('about_me');
+            Route::post('/about_me/submit', 'App\Http\Controllers\UserController@add_about_me')->name('about_me.submit');
 
 
             Route::post('/user/{id}/friend_request', 'App\Http\Controllers\UserController@friend_request')->name('friend_request.submit');
@@ -106,7 +111,7 @@ Route::middleware('auth', 'admin')->group(function () {
             Route::prefix('/commands')->group(function () {
 
                 Route::post('/refresh', function () {
-                    $exitCode = Artisan::call('migrate:refresh');
+                    $exitCode = Artisan::call('migrate:refresh --seed');
                     return redirect()->back();
                 })->name('refresh');
 
@@ -118,6 +123,7 @@ Route::middleware('auth', 'admin')->group(function () {
     
             Route::get('/users', 'App\Http\Controllers\AdminController@users')->name('users');
             Route::post('/users/{id}/block', 'App\Http\Controllers\AdminController@user_block')->name('user_block');
+            Route::post('/users/{id}/unblock', 'App\Http\Controllers\AdminController@user_unblock')->name('user_unblock');
             Route::post('/users/{id}/delete', 'App\Http\Controllers\AdminController@user_delete')->name('user_delete');
             Route::post('/users/search', 'App\Http\Controllers\AdminController@users_search')->name('users.search');
         }); 
@@ -136,7 +142,7 @@ Route::middleware('auth', 'admin')->group(function () {
 
 
 
-/* Это секрет! Тссс */ 
+
 
 
 

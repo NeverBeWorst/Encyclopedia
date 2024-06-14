@@ -116,7 +116,9 @@ class CreatureController extends Controller
 
         $creature->img = '../users/custom_creature/carts/' .  $creature->img;
 
-        return view('gallery_creature', ['creature' => $creature, 'reviews' => $reviews, 'users' => $users, 'creature_text' => $creature_text]);
+        $autor = User::find($creature->user_id);
+
+        return view('gallery_creature', ['creature' => $creature, 'reviews' => $reviews, 'users' => $users, 'creature_text' => $creature_text, 'autor' => $autor]);
     }
 
     public function search(SearchRequest $req) {

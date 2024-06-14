@@ -4,9 +4,7 @@
 {{asset('css/admin/.css')}}
 @endsection
 
-@section('pagename')
-
-@endsection
+@section('pagename', '')
 
 @section('content')
 <section>
