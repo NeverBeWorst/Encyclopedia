@@ -1,26 +1,32 @@
 @extends('layout.app')
 
 @section('style')
-{{asset('css/.css')}}
+{{asset('css/admin/proposal_creature.css')}}
 @endsection
 
 @section('pagename', 'Пользовательское существо')
 
 @section('content')
+
 <section>
+    <div><a href="{{ route('admin.main') }}">
+        <p>Назад</p>
+    </a></div>
+        
     <ul>
-        @if($creatures) 
         @foreach($creatures as $creature)
         <li>
-            <img src="../../../img/users/custom_creature/carts/{{ $creature->img }}" alt="">
-            <p>{{ $creature->user }}</p>
-            <p>{{ $creature->name }}</p>
-            <p>{{ $creature->habitat }}</p>
-            <p>{{ $creature->short_description }}</p>
-            <p>{{ $creature->description }}</p>
+            <div>
+                <p>{{ $creature->id }} |</p>
+                <p>{{ $creature->name }} |</p>
+                <p>{{ $creature->mythology }} |</p>
+                <p>{{ $creature->habitat }} |</p>
+                <p>{{ $creature->short_description }} |</p>
+                <p>{{ $creature->created_at }} |</p>
+                <a href="{{ route('gallery.custom_creature', [$creature->id]) }}"><p>Просмотр</p></a>
+            </div>   
         </li>
         @endforeach
-        @endif
     </ul>
 </section>
 @endsection

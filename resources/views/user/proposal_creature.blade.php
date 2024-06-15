@@ -8,7 +8,7 @@
 
 @section('content')
 <section>
-    <div>
+    <div class="general_form">
         <form action="{{ route('user.proposal_creature.submit') }}" method="post" enctype="multipart/form-data">
         @csrf
             <div class="form_block">

@@ -8,6 +8,8 @@ section {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+
+    border-radius: 40px;
     
     padding: 50px;
     /* background-color: #664031; */
@@ -68,10 +70,11 @@ section {
 }
 
 .filtration {
+    width: 90%;
     background-color: #7e513e;
     height: 230px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
+    border-radius: 30px;
+    margin: 10px auto 30px auto;
 }
 
 .reset_filters {

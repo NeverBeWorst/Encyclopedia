@@ -79,7 +79,6 @@ Route::middleware('auth', 'status')->group(function () {
         });
         
     });
-
     
     Route::post('gallery/gallery_creature/{id}/submit', 'App\Http\Controllers\ReviewController@submit')->name('gallery_creature.submit');
 

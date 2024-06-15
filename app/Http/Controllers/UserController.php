@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Friends;
 use App\Models\Review;
 use App\Models\Notice;
+use App\Models\Creature;
 
 use Carbon\Carbon;
 
@@ -72,6 +73,7 @@ class UserController extends Controller
         $friends = null;
         $friends_request = null;
         $reviews = null;
+        $review_creatures = Creature::find(0);
 
         if(Auth::user()) {
             $custom_creatures = CustomCreature::all()->where('user_id', '==', Auth::user()->id);
@@ -84,7 +86,7 @@ class UserController extends Controller
 
             $users = User::all()->where('login', '==', Friends::query()->where('sent_for', Auth::user()->login)->orWhere('status', '==', 'waiting'));
 
-            $reviews = Review::all()->where('user_id', '==', Auth::user()->login);
+            $reviews = Review::all()->where('user_id', '==', Auth::user()->id);
         }
 
         return view('profile', ['custom_creatures' => $custom_creatures, 'friends_request' =>  $friends_request, 'friends' => $friends, 'reviews' => $reviews]);
@@ -112,11 +114,19 @@ class UserController extends Controller
     }
 
     public function about_me() {
-        return view('user/about_me');
+        $user = Auth::user();
+        $text = $user->about_me;
+        return view('user/about_me', ['text' =>  $text]);
     }
 
-    public function add_about_me() {
-        return view('user/about_me');
+    public function add_about_me(Request $req) {
+        $text = $req->input('text');
+        $user = Auth::user();
+
+        $user->about_me = $text;
+        $user->save();
+
+        return redirect()->route('profile');
     }
 
     public function friend_request(string $id) {
@@ -131,30 +141,30 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function confirm_friend_request(string $id) {
-        $user1 = User::find($id);
+    public function confirm_friend_request(string $name) {
+        $user1 = User::all()->where('login', '==', $name);
         $user2 = Auth::user();
 
         $friend = Friends::all()
-            ->where('sent_for', $user1)
-            ->where('sent_from', $user2);
+            ->where('sent_from', $user1[0]->login)
+            ->where('sent_for', $user2->login);
 
-        $friend->status = 'confirm';
-        $friend->save();
+        $friend[0]->status = 'confirm';
+        $friend[0]->save();
 
         return redirect()->back();
     }
 
     public function reject_friend_request(string $id) {
-        $user1 = User::find($id);
+        $user1 = User::all()->where('login', '==', $name);
         $user2 = Auth::user();
 
         $friend = Friends::all()
-            ->where('sent_for', $user1)
-            ->where('sent_from', $user2);
+            ->where('sent_from', $user1[0]->login)
+            ->where('sent_for', $user2->login);
 
-        $friend->status = 'reject';
-        $friend->save();
+        $friend[0]->status = 'reject';
+        $friend[0]->save();
 
         return redirect()->back();
     }

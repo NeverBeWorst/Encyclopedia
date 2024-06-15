@@ -2,6 +2,10 @@
     list-style-type: none;
 }
 
+.hudden {
+    display: none;
+}
+
 p, main a {
     font-size: 17pt;
 }
@@ -173,7 +177,7 @@ div.notice {
 }
 
 .cards .card div {
-    margin: 10px;
+    margin: 9px;
     border-radius: 15px;
     border: dashed 2px #492F24;
     width: 180px;
@@ -205,23 +209,34 @@ div.notice {
 }
 
 .friends_box {
-    width: 550px;
+    width: 700px;
     display: flex;
     justify-content: space-between;
 }
 
-.friends_box div {
-    width: 260px;
+.friends_box div, .my_comments, .my_comments div {
+    width: 300px;
     background-color: #7E513E;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
 }
 
 .friends_box div p {
     font-size: 20px;
 }
 
-.friends_box div ol {
-    width: 240px;
-    border: solid #FFE4C4;
+.friends_box div div, .my_comments div {
+    background-color: #7E513E;
+    border: solid 2px #FFE4C4;
+    color: #FFE4C4;
+    width: 90%;
+    margin: 5px;
+    overflow: auto;
+}
+
+.my_comments {
+    width: 400px;
 }
 
 .creatures {
@@ -297,4 +312,47 @@ li.creature {
 .my_custom_creatures h2 {
     text-align: center;
     margin: 20px 0;
+    color: #492f24;
+}
+
+.proposal_friend button {
+    width: 200px;
+    background-color: #7E513E;
+    color: #FFE4C4;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.proposal_friend {
+    margin: 10px auto;
+}
+
+.user_block {
+    width: 100%;
+    padding: 0 32%;
+}
+
+.no_creatures {
+    color: #7E513E;
+    text-align: center;
+    font-size: 25px;
+}
+
+.friends_box, .my_comments {
+    li {
+        margin-top: 5px;
+    }
+    div {
+        max-height: 200px;
+    }
+}
+
+.friends_request li button {
+    background-color: #7E513E;
+    border: none;
+    cursor: pointer;
+    color: #FFE4C4;
+    text-decoration: underline;
 }

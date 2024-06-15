@@ -35,6 +35,7 @@ section {
     margin: 5px;
     padding: 5px;
     margin-bottom: 2px;
+    width: 130px;
 }
 
 .back_button:hover p {
@@ -47,6 +48,13 @@ section {
     max-width: 30px;
     height: 30px;
     background-color: white;
+}
+
+.short_info {
+    background-color: #7E513E;
+    color: #FFE4C4;
+    height: 250px;
+    border-radius: 30px;
 }
 
 .info_block div {
@@ -75,8 +83,11 @@ section {
 .creature_description {
     width: 800px;
     margin: 10px auto;
-    padding: 10px;
-    border: solid 1px;
+    padding: 20px;
+    border: solid 1px ;
+    background-color: #7E513E;
+    border-radius: 30px;
+    color: #FFE4C4;
     font-size: 20pt;
 }
 
@@ -98,6 +109,13 @@ section {
 .comment_block {
     width: 1000px;
     margin: 10px auto;
+    background-color: #7E513E;
+    color: #FFE4C4;
+    border-radius: 20px;
+    padding: 10px;
+    a {
+        color: #FFE4C4;
+    }
 }
 
 .comment_block div p {

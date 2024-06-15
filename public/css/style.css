@@ -125,3 +125,45 @@ footer div {
 footer p {
     text-align: center;
 }
+
+.general_form {
+    width: 60%;
+    /* border: solid black 1px; */
+    border-radius: 20px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #7E513E;
+    color: #FFE4C4;
+}
+
+.general_form p, .general_form label {
+    font-size: 20px;
+}
+
+.general_form input {
+    width: 200px;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #7E513E;
+    color: #FFE4C4;
+    border: solid #FFE4C4 3px;
+}
+
+.general_form input::placeholder {
+    color: #FFE4C4;
+}
+
+.general_form textarea {
+    width: 400px;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.general_form button {
+    width: 100px;
+    font-size: 15px;
+    background-color: #FFE4C4;
+    border: solid 2px #7E513E;
+    border-radius: 7px;
+}

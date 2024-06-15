@@ -4,42 +4,69 @@
 {{asset('css/profile.css')}}
 @endsection
 
-@section('pagename', {{ $user->login }})
+@section('pagename')
+{{ $user->login }}
+@endsection
 
 @section('content')
 <section>
-    <div>
-        @if ($user->avatar)
-        <img src="../../img/users/avatar/{{ $user->avatar }}" alt="Аватар">
-        @else 
-        <img src="../../img/icons/unknown_avatar.png" alt="Аватар">
-        @endif
-        <p>{{ $user->login }}</p>
-    </div>
+    <div class="user_block">
+        <div style="margin: 10px auto">
+            <div style="margin-left: 100px;" class="short_info">
+                <div class="avatar_block">
 
-    @if (Auth::user())
-    <div>
-        <form action="{{ route('user.friend_request.submit', [ $user->id ]) }}" method="post">
-        @csrf
-            <button type="submit">Запрос в дружбу</button>
-        </form>
-    </div>
-    @endif
-
-    @if ($custom_creatures) 
-        <ul>
-        @foreach($custom_creatures as $creature) 
-        <li> 
-            <img src="../../img/users/custom_creature/carts/{{ $creature->img }}" alt="">
-            <div>
-                <p>{{ $creature->name }}</p>
-                <p>{{ $creature->short_description }}</p>
+                    @if ($user->avatar)
+                    <img class="avatar" src="../../img/users/avatar/{{ $user->avatar }}" alt="Аватар пользователя">
+                    @else
+                    <img class="avatar" src="../img/icons/unknown_avatar.png" alt="Аватар пользователя">
+                    @endif
+                            
+                    <p class="user_name"> {{ $user->login }} </p>
+                </div>
             </div>
-            <a href="{{ route('gallery.custom_creature', [$creature->id]) }}">
-                <p>Посмотреть</p>
-            </a></li>
-        @endforeach
+
+            <div style="margin: 10px">
+                <div class="about_me">
+                    <p>Обо мне</p>
+                    <div class="text">
+                        <p>{{  $user->about_me }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Auth::user())
+        <div class="proposal_friend">
+            <form action="{{ route('user.friend_request.submit', [ $user->id ]) }}" method="post">
+            @csrf
+                <button type="submit">Запрос в дружбу</button>
+            </form>
+        </div>
+        @endif
+    </div>
+    @if ($custom_creatures) 
+        <h2 style="text-align: center; margin: 20px;">Пользовательские сущности</h2>
+
+        @if ($custom_creatures->count() == 0)
+        <p>У данного пользователя</p>
+
+        @else
+
+        <ul class="creatures">
+            @foreach ($custom_creatures as $custom_creature)
+            <a href="{{ route('gallery.custom_creature', [$custom_creature->id]) }}"> 
+                <li class="creature">
+                    <div class="seam">
+                        <p class="name">{{$custom_creature->name}}</p>
+                        <div class="picture"><img src="../../img/users/custom_creature/carts/{{$custom_creature->img}}" alt="Фото/картина существа"></div> 
+                        <p class="short_description">{{$custom_creature->short_description}}</p>
+                    </div>
+                </li>
+            </a>
+            @endforeach
         </ul>
         @endif
-</section>
+    @endif
+    </section>
 @endsection

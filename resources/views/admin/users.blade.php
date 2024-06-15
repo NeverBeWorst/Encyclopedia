@@ -12,12 +12,15 @@
         <p>Назад</p>
     </a></div>
 
-    <form action="{{ route('admin.users.search') }}" method="post">
-        @csrf
-        <input type="text" name="id" placeholder="id">
-        <input type="text" name="name" placeholder="Имя">
-        <input type="submit" value="Найти">
-    </form>
+    <div class="general_form">
+        <form action="{{ route('admin.users.search') }}" method="post">
+            @csrf
+            <input type="text" name="id" placeholder="id">
+            <input type="text" name="name" placeholder="Имя"><br>
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+    
     <ol>
         @if ($search)
             <li>

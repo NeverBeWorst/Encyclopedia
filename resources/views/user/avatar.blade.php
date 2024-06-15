@@ -6,10 +6,13 @@
 
 @section('content')
 <section>
-    <form method="post" action="{{ route('user.avatar.submit') }}" enctype="multipart/form-data">
-        @csrf 
+    <div class="general_form">
+        <form method="post" action="{{ route('user.avatar.submit') }}" enctype="multipart/form-data">
+            @csrf 
+            <label for="image">Выберите фото для вашего нового аватара</label><br>
             <input type="file" name="image"><br>
             <button type="submit">Отправить</button>
-    </form>
+        </form>
+    </div>    
 </section>
 @endsection

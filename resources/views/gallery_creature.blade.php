@@ -4,22 +4,24 @@
 {{asset('css/gallery_creature.css')}}
 @endsection
 
-@section('pagename', {{$creature->name}} )
+@section('pagename')
+{{$creature->name}}
+@endsection
 
 @section('content')
 <section>
     <div class="back_button">
-        <a href="{{ route ('gallery') }}"><p>Назад</p></a>
+        <a href="{{ route ('gallery') }}"><p>В галерею</p></a>
     </div>
     
     <div class="info_block">
         <div class="picture">
-            @if ($creature->user)
-            <img src="../../img/users/custom_creature/carts/{{$creature->img}}" alt="Фото/картина существа"> 
+            @if ($creature->user_id)
+            <a href="../../img/img/{{$creature->img}}"><img src="../../img/img/{{$creature->img}}" alt="Фото/картина существа"></a>
             <a class="download_icon" href="{{ asset('img/users/custom_creature/carts/' . $creature->img) }}" download><img src="{{ asset('img/icons/download.png') }}" alt="Скачать"></a>
 
             @else
-            <img src="../../img/carts/{{$creature->img}}" alt="Фото/картина существа"> 
+            <a href="../../img/carts/{{$creature->img}}"><img src="../../img/carts/{{$creature->img}}" alt="Фото/картина существа"></a>
             <a class="download_icon" href="../../{{$creature->img}}" download><img src="../../img/icons/download.png" alt="Скачать"></a>
             @endif
         </div>
@@ -49,6 +51,11 @@
         </ul>
     </div>
 
+    @if ($creature->user_id)
+    <div class="comment_block">
+        <p>У пользовательских сущностей нельзя оставить комментарии</p>
+    </div>
+    @else
     <div class="comment_block">
         @if(session()->get('user_name') )
         <div>
@@ -70,7 +77,7 @@
             @if ($reviews)
             @foreach($reviews as $review)
                 <div>
-                    <a href="{{ route('profile.user', [$review->user_id] ) }}"><p class="user_name">{{$review->user_name}}</p></a>
+                    <a href="{{ route('profile.user', [$review->user_id] ) }}"><p class="user_name">{{$review->user_name}} |</p></a>
                     <p>{{$review->text}}</p>
                 </div>
             @endforeach
@@ -79,9 +86,8 @@
             <p>Пока ни кто не оставлял свои комментарии</p>
             @endif
         </div>
-        
-
     </div>
+    @endif
     
 </section>
 

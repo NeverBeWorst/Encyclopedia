@@ -1,0 +1,36 @@
+ul li div {
+    display: flex;
+}
+
+section ul {
+    width: 100%;
+    border: solid #7E513E 5px;
+    border-radius: 10px;
+    padding: 5px;
+
+    li {
+        border-bottom: solid #7E513E 3px;
+    }
+}
+
+ul li div {
+
+    p {
+        font-size: 20px;
+        margin-right: 5px;
+    }
+    
+    a {
+        color: blue;
+    }
+
+    form {
+        margin: 3px;
+
+        input {
+            padding: 3px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    }
+}

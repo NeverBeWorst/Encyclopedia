@@ -9,10 +9,11 @@
 @section('content')
 
 <section>
-    <div><h2>Форма для создания существа</h2></div><br>
+    <div><h2>Форма для создания существа</h2></div>
 
     <div class="creature_form">
         <form action="{{ route('admin.creature.submit') }}" method="post">
+            <p>Добавить существо с уже загруженным фото</p>
         @csrf
             <div class="form_block">
                 <div>
@@ -43,6 +44,7 @@
         </form>
 
         <form method="post" action="{{ route('admin.creatures_image.submit') }}" enctype="multipart/form-data">
+            <p>Загрузить фото на сервер</p>
             @csrf 
             <div>
                 <input type="text" name="img_name" placeholder="Введите как хотите назвать картинку"><br>
@@ -55,6 +57,7 @@
         </form>
 
         <form action="{{ route('admin.creature_with_img.submit') }}" method="post" enctype="multipart/form-data">
+            <p>Добавить существо с загрузкой фото</p>
         @csrf
             <div class="form_block">
                 <div>
@@ -86,26 +89,22 @@
             </div>
         </form>
 
-        <form action=""></form>
-    </div>
-
-    <div class="users_list">
-        <p><a href="{{ route('admin.users') }}">Пользователи</a></p>
     </div>
 
     <div>
+
+    </div>
+    <div class="lists">
+        <p><a href="{{ route('admin.users') }}">Список пользователей</a></p>
         <p><a href="{{ route('admin.proposal_creature') }}">Список предложений к добавлению</a></p>
-    </div>
-
-    <div>
         <p><a href="{{ route('admin.custom_creature') }}">Список пользовательских существ</a></p>
     </div>
 
     <br><br><br>
-    <div>
-        <h2>Острожно!!!!</h2>
+    <div class="warning">
+        <p>Острожно!!!!</p>
         <form action="{{ route('admin.refresh') }}" method="post">@csrf<input type="submit" value="СТЕРЕТЬ БАЗУ ДАННЫХ"></form>
-        <form action="{{ route('admin.do_admin') }}" method="post">@csrf <input type="text" name="name"><input type="submit" value="Добавить админа"></form>
+        <form action="{{ route('admin.do_admin') }}" method="post">@csrf <p>Напишите имя кому дать права администратора</p><input type="text" name="name"> <input type="submit" value="Добавить админа"></form>
     </div>
 </section>
 

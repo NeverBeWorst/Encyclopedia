@@ -2,16 +2,32 @@ p, main a {
     font-size: 17pt;
 }
 
+.search {
+    margin: 20px;
+}
+
 .users_list ol {
-    width: 80%;
-    border: solid grey 5px;
+    width: 100%;
+    border: solid #7E513E 5px;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .users_list ol li {
     display: flex;
     margin-right: 10px;
+    border-bottom: solid #7E513E 3px;
 }
 
 .users_list ol li p {
     flex-grow: 1;
+}
+
+input {
+    cursor: pointer;
+}
+
+.users_list ol li input {
+    padding: 3px;
+    font-size: 15px;
 }

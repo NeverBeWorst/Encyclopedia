@@ -97,7 +97,8 @@ class AdminController extends Controller
 
     public function proposal_creature_view($id) {
         $creature = ProposalCreature::find($id);
-        return view('admin/proposal_creature_view', ['creature' => $creature]);
+        $creature_text = preg_split('/\r\n|\r|\n/', $creature->description);
+        return view('admin/proposal_creature_view', ['creature' => $creature, 'creature_text' => $creature_text]);
     }
     
 

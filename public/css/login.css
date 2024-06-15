@@ -6,3 +6,11 @@ input:user-invalid {
     border-color: red;
 }
 
+h1 {
+    text-align: center;
+}
+
+.general_form button {
+    width: 200px;
+}
+

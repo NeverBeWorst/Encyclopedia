@@ -27,10 +27,10 @@
                     <p class="user_name"> @if (Auth::user()) {{ Auth::user()->login }} @else Имя @endif </p>
                 </div>
 
-                <div class="notice">
+                {{-- <div class="notice">
                     <img src="../img/icons/notification_icon_241069.png" alt="">
                     <div></div>
-                </div>
+                </div> --}}
             </div>
             
 
@@ -138,83 +138,82 @@
             <div class="friends_box">
                 <div class="my_friends">
                     <p>Мои друзья</p>
+                    <div>
                     
-                    @if (Auth::user())
+                        @if (Auth::user())
 
-                    @if ($friends->count() == '0')
-                        <p>У вас пока нет друзей</p>
-                    @else 
-                    <ul>
-                        @foreach($friends as $friend) 
-                        <li>{{ $friend->sent_from }}</li>
-                        @endforeach
-                    </ul>
-                    <br>
-                    @endif
-                    
-                    @else
-                    <ol>
-                        <li><p>Здесь ваши друзья</p></li>
-                    </ol>
-                    @endif
+                        @if ($friends->count() == '0')
+                            <p>У вас пока нет друзей</p>
+                        @else 
+                        <ol>
+                            @foreach($friends as $friend) 
+                            <li>{{ $friend->sent_from }}</li>
+                            @endforeach
+                        </ol>
+                        <br>
+                        @endif
+                        
+                        @else
+                        <ol>
+                            <li><p>Здесь ваши друзья</p></li>
+                        </ol>
+                        @endif
+                    </div>    
                 </div>
 
                 <div class="friends_request">
                     <p>Предложения дружбы</p>
-                    @if (Auth::user())
+                    <div>
+                        
+                        @if (Auth::user())
 
-                    @if ($friends_request->count() == '0')
-                        <p>У вас пока нет друзей</p>
-                    @else 
-                    <ul>
-                        @foreach($friends_request as $friend_request) 
-                        <li>{{ $friend_request->sent_from }}</li>
-                        @endforeach
-                    </ul>
-                    <br>
-                    @endif
-                    
-                    @else
-                    <ol>
-                        <li><p>Здесь ваши друзья</p></li>
-                    </ol>
-                    @endif
+                        @if ($friends_request->count() == '0')
+                            <p>У вас пока нет друзей</p>
+                        @else 
+                        <ol>
+                            @foreach($friends_request as $friend_request) 
+                            <li>
+                                <p>{{ $friend_request->sent_from }} 
+                                    <form action="{{ route('user.friend_request.confirm', [$friend_request->sent_from]) }}" method="post">@csrf <button type="submit">Принять</button></form>
+                                    <form action="{{ route('user.friend_request.reject', [$friend_request->sent_from]) }}" method="post">@csrf <button type="submit">Отклонить</button></form>
+                                </p>
+                            </li>
+                            @endforeach
+                        </ol>
+                        <br>
+                        @endif
+                        
+                        @else
+                        <ol>
+                            <li><p>Здесь ваши друзья</p></li>
+                        </ol>
+                        @endif
+                    </div>
                 </div>
             </div>
 
             <div class="my_comments">
                 <p>Мои комментарии</p>
+                <div>
+                    @if (Auth::user())
 
-                @if (Auth::user())
-
-                    @if ($reviews->count() == '0')
-                        <p>У вас пока нет комментариев</p>
-                    @else 
-                    <ul>
-                        @foreach($reviews as $review) 
-                        <li>{{ $review->sent_from }}</li>
-                        @endforeach
-                    </ul>
-                    <br>
+                        @if ($reviews->count() == '0')
+                            <p>У вас пока нет комментариев</p>
+                        @else 
+                        <ol>
+                            @foreach($reviews as $review) 
+                            <li>{{ $review->text }} </li>
+                            @endforeach
+                        </ol>
+                        <br>
+                        @endif
+                        
+                        @else
+                        <ol>
+                            <li><p>Здесь ваши комментарии</p></li>
+                        </ol>
                     @endif
-                    
-                    @else
-                    <ol>
-                        <li><p>Здесь ваши комментарии</p></li>
-                    </ol>
-                @endif
-
-                @if (Auth::user())
-                <ol>
-                    @foreach ($reviews as $review)
-                    <li>{{ $review }}</li>
-                    @endforeach
-                </ol>
-                @else
-                <ol>
-                    <li>Здесь ваши комментарии</li>
-                </ol>
-                @endif
+                </div>
             </div>
         </li>
     </ul>
@@ -224,7 +223,7 @@
         <h2>Ваши пользовательские сущности</h2>
 
         @if ($custom_creatures->count() == 0)
-        <p>Сейчас у вас нет своих мифических существ</p>
+        <p class="no_creatures">Сейчас у вас нет своих мифических существ</p>
 
         @else
 
@@ -245,7 +244,6 @@
         @else
 
         @endif
-        
         
     </div>
 </section>

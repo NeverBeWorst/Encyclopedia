@@ -1,12 +1,20 @@
 .creature_form {
-    margin: 20px;
-    border: solid 5px grey;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 40px;
     grid-row-gap: 30px;
     padding: 40px;
     
+    p {
+        color: #FFE4C4;
+        margin: 5px;
+    }
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #7E513E;
 }
 
 p, main a {
@@ -14,7 +22,8 @@ p, main a {
 }
 
 .creature_form form {
-    border: solid 5px grey;
+    border: solid 5px #7E513E;
+    background-color: #7E513E;
     border-radius: 20px;
 
     padding: 20px;
@@ -32,6 +41,8 @@ p, main a {
     margin-bottom: 10px;
     border-radius: 5px;
     font-size: 10pt;
+    background-color: #FFE4C4;
+    border: none;
 }
 
 .form_block div {
@@ -44,7 +55,28 @@ p, main a {
     border-radius: 5px;
     font-size: 10pt;
     max-width: 700px;
+    background-color: #FFE4C4;
+    border: none;
 
     min-width: 400px;
 }
 
+.warning {
+    width: 80%;
+    margin: 10px auto;
+
+    form {
+        margin-bottom: 20px;
+    }
+}
+
+.lists {
+    width: 60%;
+    margin: 20px auto;
+
+    a {
+        text-decoration: underline;
+        color: #7E513E;
+    }
+    
+}
