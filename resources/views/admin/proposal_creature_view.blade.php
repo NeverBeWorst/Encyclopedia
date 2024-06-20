@@ -11,7 +11,7 @@
 @section('content')
 <section>
     <div class="back_button">
-        <a href="{{ route ('gallery') }}"><p>Назад</p></a>
+        <a href="{{ route ('admin.main') }}"><p>Назад</p></a>
     </div>
     
     <div class="info_block">

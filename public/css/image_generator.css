@@ -1,0 +1,11 @@
+footer {
+    display: none;
+}
+
+.general_form form select {
+    width: 300px;
+}
+
+.image_continue {
+    width: 300px;
+}

@@ -7,7 +7,10 @@
 @section('pagename', 'Главная')
 
 @section('content')
-<section class="about_us">
+<section>
+
+
+<div class="about_us">
     <h2>О нас</h2>
     <div>
         <ul>
@@ -17,9 +20,9 @@
         </ul>
         <img src="img/img1.jpg" alt="">
     </div>
-</section>
+</div>
 
-<section class="about_myth">
+<div class="about_myth">
     <h2>"Миф" и его понятия</h2>
     <div>
         <p>Что же такое миф?!</p>
@@ -28,9 +31,9 @@
             <p>Само слово «миф» — древнегреческое и переводится как «сказание» или «предание».</p>
         <img src="img/img2.jpg" alt="">
     </div>
-</section>
+</div>
 
-<section class="join_to_us">
+<div class="join_to_us">
     <h2>Вступайте к нам</h2>
     <div>
         <p>Присоединяйтесь к нашему сообществу и давайте вместе изучать этот мистический мир</p>
@@ -40,5 +43,6 @@
             </a>
         </p>
     </div>
+</div>
 </section>
 @endsection

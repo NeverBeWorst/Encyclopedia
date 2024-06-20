@@ -2,6 +2,14 @@
     list-style-type: none;
 }
 
+section {
+    -webkit-box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
 .hudden {
     display: none;
 }
@@ -13,10 +21,6 @@ p, main a {
 p {
     font-size: 20px;
     color: #FFE4C4;
-}
-
-footer p {
-    color: black;
 }
 
 .flex {
@@ -34,20 +38,17 @@ footer p {
 .users_info li {
     display: flex;
     justify-content: space-between;
-    /* border: solid 1px black; */
-    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
-div.short_info {
-    width: 250px;
-    height: 300px;
-    display: flex;
+.short_info {
+    padding: 0 120px;
 }
 
 .short_info .avatar_block {
     text-align: center;
     background-color: #7E513E;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 
@@ -56,8 +57,9 @@ div.short_info {
     height: 200px;
     margin: 25px;
     margin-bottom: 15px;
-    border: solid #BE8557 3px;
-    border-radius: 5px;
+    border: solid #FFE4C4 2px;
+    background-color: white;
+    border-radius: 20px;
 }
 
 
@@ -78,19 +80,20 @@ div.notice {
     margin: auto;
 }
 
-.user_status .status {
-    width: 650px;
+.status {
+    width: 800px;
     height: 100px;
-    background-color: #7E513E;
     padding: 15px;
-    padding-bottom: 0;
     padding-right: 30px;
-    text-align: right;
-    border-radius: 5px;
+    text-align: center;
+    margin: 10px auto;
+    font-style: italic;
 }
 
-.user_status .status p {
+ .status p {
     margin-bottom: 15px;
+    color: black;
+    font-size: 25px;
 }
 
 .sign_in_out {
@@ -132,11 +135,11 @@ div.notice {
 }
 
 .about_me {
-    width: 400px;
+    width: 500px;
     min-width: 400px;
     /* min-height: 100px; */
     background-color: #7E513E;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px;
 }
 
@@ -146,53 +149,51 @@ div.notice {
 }
 
 .about_me .text {
-    width: 380px;
-    background-color: #7E513E;
-    border: 3px solid #FFE4C4;
+    width: 480px;
+    background-color: #492F24;
+    border: 2px solid #FFE4C4;
     min-height: 150px;
     border-radius: 10px;
     margin: 0 auto;
 }
 
 .about_me .text p {
-    font-size: 15px;
+    font-size: 17px;
     margin: 5px;
 }
 
 .cards {
-    width: 660px;
     display: flex;
     justify-content: space-between;
-    
+    margin: 0 auto;
 }
 
 .cards .card {
-    width: 200px;
-    height: 250px;
+    width: 250px;
+    height: 300px;
     display: block;
     background-color: #7E513E;
     border-radius: 20px;
-    margin-top: 0;
-    padding-top: 1px;
+    margin: 20px;
 }
 
 .cards .card div {
-    margin: 9px;
     border-radius: 15px;
-    border: dashed 2px #492F24;
-    width: 180px;
-    height: 230px;
+    border: solid 2px #492F24;
+    background-color: #492F24;
+    width: 92%;
+    height: 92%;
 }
 
 .cards .card .card_title {
-    font-size: 16px;
+    font-size: px;
     text-align: center;
     margin-top: 15px;
 }
 
 .cards .card img.card_icon {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border: solid 2px #FFE4C4;
     border-radius: 10px;
     margin: 10px 50px;
@@ -203,7 +204,7 @@ div.notice {
 
 .cards .card .card_text {
     width: 70%;
-    font-size: 13px;
+    font-size: 14px;
     text-align: center;
     margin: 0 auto;
 }
@@ -227,7 +228,7 @@ div.notice {
 }
 
 .friends_box div div, .my_comments div {
-    background-color: #7E513E;
+    background-color: #492F24;
     border: solid 2px #FFE4C4;
     color: #FFE4C4;
     width: 90%;

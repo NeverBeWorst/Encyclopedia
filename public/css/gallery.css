@@ -3,6 +3,8 @@ section {
     width: 90%;
 }
 
+
+
 .scrapbook {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -15,7 +17,7 @@ section {
     /* background-color: #664031; */
     /* background-image: url('../img/leather-macro-background-4.jpg');
     background-size: cover; */
-    background: linear-gradient(
+    /* background: linear-gradient(
         217deg,
         #664031 ,  
         #492f24 , 
@@ -37,7 +39,9 @@ section {
         #492f24 
         )
         
-        ;
+        ; */
+
+        background-color:  #63402c;
 }
 
 .creature  {
@@ -46,8 +50,9 @@ section {
     /* background-color: #7e513e; */
     /* background-image: url('../img/leather-brown-background-1.jpg');  */
 
-    background-image: radial-gradient(#664031, #492f24, #7e513e);
-    background-repeat: repeat;
+    /* background-image: radial-gradient(#664031, #492f24, #7e513e);
+    background-repeat: repeat; */
+    background-color: #8f664a;
     color: bisque;
     border: solid #492f24 1px;
     width: 90%;
@@ -75,11 +80,24 @@ section {
     height: 230px;
     border-radius: 30px;
     margin: 10px auto 30px auto;
-}
+
+    p {
+        text-align: center;
+        color: bisque;
+        font-size: 20px;
+    }
+
+    input {
+        color: black;
+    }
+ }
 
 .reset_filters {
-    width: 200px;
     color: white;
+}
+
+#suggestions li {
+    position: relative;
 }
 
 .filtration form {
@@ -87,31 +105,28 @@ section {
     margin: auto;
 }
 
-.filtration form input {
-    width: 100px;
-    height: 20px;
-    font-size: 10pt;
-}
-
-.filtration .creature_name input {
-    width: 250px;
-    font-size: 11pt;
+.filtration form input, .filtration form select {
+    width: 200px;
+    border-radius: 5px;
+    height: 23px;
+    font-size: 17px;
+    font-family: "Fontick";
 }
 
 .filtration .first_filtration {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
-}
-
-.filtration .first_filtration div {
-    width: 300px;
+    margin: 10px auto;
 }
 
 .filtration .search {
-    width: 80px;
+    width: 70px;
     height: 20px;
     font-size: 12pt;
+    background-color: bisque;
+    color: black;
+    border: none;
 }
 
 .filtration  .select_block {
@@ -123,19 +138,31 @@ section {
 }
 
 .filtration .second_filtration {
+    width: 70%;
     display: flex;
     justify-content: space-between;
+    margin: 10px auto;
+    p {
+        text-align: left;
+    }
+    div input {
+        width: 40px;
+    }
 }
 
 .reset_filters p {
-    color: white;
+    
     text-align: center;
+
+    a p {
+        color: white;
+    }
 }
 
 .creature .name {
     text-align: center;
     font-size: 18pt;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .creature .picture {

@@ -15,42 +15,40 @@
     <div class="general_form">
         <form action="{{ route('admin.users.search') }}" method="post">
             @csrf
-            <input type="text" name="id" placeholder="id">
-            <input type="text" name="name" placeholder="Имя"><br>
-            <input type="submit" value="Найти">
+            <div><input type="text" name="id" placeholder="id"></div>
+            <div><input type="text" name="name" placeholder="Имя"></div>
+            <div><button type="submit">Найти</button></div>
         </form>
     </div>
-    
-    <ol>
+
+    <table class="users_list">
         @if ($search)
-            <li>
-                <p>{{ $users->id }} | </p>
-                <p>{{ $users->login }} | </p>
-                <p>{{ $users->email }} | </p>
-                <p>{{ $users->status }} | </p>
-                <p>{{ $users->created_at }} | </p>
-                <!-- <p>{{ $users->update_at }}</p> -->
-                <p><form action="{{ route('admin.user_block', [$users->id]) }}" method="post"> @csrf <input type="submit" value="Заблокировать"> </form></p>
-                <p><form action="{{ route('admin.user_unblock', [$users->id]) }}" method="post"> @csrf <input type="submit" value="Разблокировать"> </form></p>
-                <p><form action="{{ route('admin.user_delete', [$users->id]) }}" method="post"> @csrf <input type="submit" value="Удалить"> </form></p>
-            </li>
+        <tr>
+            <td>{{ $users->id }} </td>
+            <td>{{ $users->login }} </td>
+            <td>{{ $users->email }} </td>
+            <td>{{ $users->status }} </td>
+            <td>{{ $users->created_at }} </td>
+            <td><form action="{{ route('admin.user_block', [$users->id]) }}" method="post"> @csrf <input type="submit" value="Заблокировать"> </form></td>
+            <td><form action="{{ route('admin.user_unblock', [$users->id]) }}" method="post"> @csrf <input type="submit" value="Разблокировать"> </form></td>
+            <td><form action="{{ route('admin.user_delete', [$users->id]) }}" method="post"> @csrf <input type="submit" value="Удалить"> </form></td>
+        </tr>
         @endif
         @if (!$search)
             @foreach($users as $user)
-            <li>
-                <p>{{ $user->id }} | </p>
-                <p>{{ $user->login }} | </p>
-                <p>{{ $user->email }} | </p>
-                <p>{{ $user->status }} | </p>
-                <p>{{ $user->created_at }} | </p>
-                <!-- <p>{{ $user->update_at }}</p> -->
-                <p><form action="{{ route('admin.user_block', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Заблокировать"> </form></p>
-                <p><form action="{{ route('admin.user_unblock', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Разблокировать"> </form></p>
-                <p><form action="{{ route('admin.user_delete', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Удалить"> </form></p>
-            </li>
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->login }} </td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->status }}</td>
+                <td>{{ $user->created_at }}</td>
+                <td><form action="{{ route('admin.user_block', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Заблокировать"> </form></td>
+                <td><form action="{{ route('admin.user_unblock', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Разблокировать"> </form></td>
+                <td><form action="{{ route('admin.user_delete', [$user->id]) }}" method="post"> @csrf <input type="submit" value="Удалить"> </form></td>
+            </tr>
             @endforeach
         @endif
-    </ol>
+    </table>
 </section>
     
 @endsection

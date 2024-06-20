@@ -6,28 +6,36 @@ p, main a {
     margin: 20px;
 }
 
-.users_list ol {
+table {
     width: 100%;
     border: solid #7E513E 5px;
     border-radius: 10px;
     padding: 5px;
+
+    td {
+        border-bottom: solid #7E513E 3px;
+    }
 }
 
-.users_list ol li {
-    display: flex;
-    margin-right: 10px;
+.users_list tr  {
     border-bottom: solid #7E513E 3px;
-}
-
-.users_list ol li p {
-    flex-grow: 1;
+    font-size: 20px;
+    td {
+        margin-right: 10px;
+        min-width: 50px;
+    }
 }
 
 input {
     cursor: pointer;
 }
 
-.users_list ol li input {
+.users_list input {
     padding: 3px;
     font-size: 15px;
+}
+
+.general_form {
+    height: 150px;
+    margin-top: 0;
 }

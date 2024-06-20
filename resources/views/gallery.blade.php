@@ -15,7 +15,7 @@
             <div class="first_filtration">
                 <div class="select_block">
                     <div>
-                        <p>Выберите какая мифология вам нужна</p>
+                        <p>Вид мифологии</p>
                         <select  name="mythology" id="mythology" placeholder="Выбирите мифологию">
                             <option value="" selected disabled hidden>Мифология</option>
                             @foreach($_mythology as $criterion)
@@ -25,7 +25,7 @@
                     </div>
 
                     <div>
-                        <p>Выберите какая местоность вам нужна</p>
+                        <p>Местонсть обитания</p>
                         <select name="habitat" id="habitat" placeholder="Выбирите место проживания сущности">
                             <option value="" selected disabled hidden>Среда обитания</option>
                             @foreach($_habitat as $criterion)
@@ -33,25 +33,26 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
 
-                <div class="creature_name">
-                    <p>Введите имя нужной вам сущности</p>
-                    <input type="text" id="searchText" name="name" value="{{ $name }}" placeholder="Введите имя">
+                    <div class="creature_name">
+                        <p>Поиск по названию</p>
+                        <input type="text" id="searchText" name="name" value="{{ $name }}" placeholder="Поиск">
                     <ol id="suggestions">
                         
                     </ol>
                 </div>
+
             </div>
+        </div>
 
             <div class="second_filtration">
                 <ol class="">
-                    <p>Добавить пользовательских сущностей?</p>
-                    <p><input name="custom" type="radio" value="" checked>Без них</p>
+                    <div><p>Пользовательские сущности</p></div>
+                    <div><p><input name="custom" type="radio" value="" checked>Не добавлять</p></div>
                 
-                    <p><input name="custom" type="radio" value="with_custom">Добавить</p>
+                    <div><p><input name="custom" type="radio" value="with_custom">Добавить</p></div>
                 
-                    <p><input name="custom" type="radio" value="only_custom">Только пользовательские сущности</p>
+                    <div><p><input name="custom" type="radio" value="only_custom">Только пользовательские</p></div>
                 </ol>
 
                 <input class="search" type="submit" value="Поиск">
@@ -61,11 +62,9 @@
         </form>
         
         
-        <div class="reset_filters">
             <a href="{{route('gallery')}}" >
-                <p>Сбросить фильтры</p>
+                <p class="reset_filters">Сбросить фильтры</p>
             </a>
-        </div>
         
     </div>
 

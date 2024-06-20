@@ -1,3 +1,7 @@
 .general_form button {
-    width: 250px;
+    width: 220px;
+}
+
+footer {
+    display: none;
 }

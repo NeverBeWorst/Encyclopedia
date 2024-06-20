@@ -1,6 +1,14 @@
+.creature_description, .comment_block, .short_info {
+    /* background-color:  #BC987E;
+    color: #FFE4C4; */
+}
+
 section {
     width: 1000px;
     margin: 0 auto;
+    -webkit-box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 1px 8px 4px rgba(34, 60, 80, 0.2);
 }
 
 .picture img {
@@ -51,8 +59,6 @@ section {
 }
 
 .short_info {
-    background-color: #7E513E;
-    color: #FFE4C4;
     height: 250px;
     border-radius: 30px;
 }
@@ -63,7 +69,7 @@ section {
 }
 
 .info_block .picture img {
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .info_block .short_info {
@@ -84,22 +90,15 @@ section {
     width: 800px;
     margin: 10px auto;
     padding: 20px;
-    border: solid 1px ;
-    background-color: #7E513E;
     border-radius: 30px;
-    color: #FFE4C4;
     font-size: 20pt;
-}
-
-.creature_description, .info_block {
-    font-family:'Bookerly';
+    color: black;
+    /* color: #63402c; */
 }
 
 .creature_description .description {
     font-size: 17pt;
-    font-family:'Bookerly';
     text-indent: 30px ;
-    margin-top: 5px;
 }
 
 .description {
@@ -107,29 +106,35 @@ section {
 }
 
 .comment_block {
-    width: 1000px;
+    width: 60%;
     margin: 10px auto;
-    background-color: #7E513E;
-    color: #FFE4C4;
-    border-radius: 20px;
-    padding: 10px;
-    a {
-        color: #FFE4C4;
-    }
+    padding: 30px;
+    color: black;
+    border-top: solid 1px black;
 }
 
 .comment_block div p {
-    font-size: 15pt;
+    font-size: 16px;
+    font-weight: lighter;
 }
 
 .comment_block form {
     display: block;
+    button {
+        width: 100px;
+        height: 30px;
+    }
 }
 
 .comment_block form .text {
-    width: 500px;
+    width: 400px;
     height: 25px;
     margin: 5px;
+}
+
+.comments {
+    margin-top: 20px;
+    width: 100%;
 }
 
 .comments p {
@@ -144,9 +149,10 @@ section {
 .comments div .user_name {
     font-weight: bold;
     margin: 10px;
-    width: 80px;
+    width: 60px;
+    border-right: solid 1px black;
 }
 
 .comments div p {
-    margin: 5px;
+    margin-top: 10px;
 }

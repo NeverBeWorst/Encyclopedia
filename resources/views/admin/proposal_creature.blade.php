@@ -13,28 +13,22 @@
         <p>Назад</p>
     </a></div>
         
-    <ul>
+    <table>
         @foreach($creatures as $creature)
-        <li>
-            <div>
-                <p>{{ $creature->id }} |</p>
-                <p>{{ $creature->name }} |</p>
-                <p>{{ $creature->mythology }} |</p>
-                <p>{{ $creature->habitat }} |</p>
-                <p>{{ $creature->short_description }} |</p>
-                <p>{{ $creature->created_at }}</p>
-            </div>
-            
-            <div>
-                <p>Статус: {{ $creature->status }} |</p>
-                <p><a href="{{ route('admin.proposal_creature.view', [$creature->id]) }}">Просмотр</a></p>
-                <form action="{{ route('admin.proposal_creature.confirm', [$creature->id]) }}" method="post"> @csrf <input type="submit" value="Принять"></form>
-                <form action="{{ route('admin.proposal_creature.reject', [$creature->id]) }}" method="post"> @csrf <input type="submit" value="Отклонить"></form>
-            </div>
-                
-        </li>
+        <tr>
+            <td>{{ $creature->id }}</td>
+            <td>{{ $creature->name }}</td>
+            <td>{{ $creature->mythology }}</td>
+            <td>{{ $creature->habitat }}</td>
+            <td>{{ $creature->short_description }}</td>
+            <td>{{ $creature->created_at }}</td>
+            <td>Статус: {{ $creature->status }}</td>
+            <td><a href="{{ route('admin.proposal_creature.view', [$creature->id]) }}">Просмотр</a></td>
+            <td><form action="{{ route('admin.proposal_creature.confirm', [$creature->id]) }}" method="post"> @csrf <input type="submit" value="Принять"></form></td>
+            <td><form action="{{ route('admin.proposal_creature.reject', [$creature->id]) }}" method="post"> @csrf <input type="submit" value="Отклонить"></form></td>
+        </tr>
         @endforeach
-    </ul>
+    </table>
 </section>
 
 @endsection

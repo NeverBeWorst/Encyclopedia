@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('style')
-{{asset('css/profile.css')}}
+{{asset('css/user/about_me.css')}}
 @endsection
 
 @section('pagename', 'О себе')

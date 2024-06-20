@@ -36,22 +36,19 @@
 
                     <input type="text" name="short_description" placeholder="Введите краткое описание"><br>
 
-                    <button type="submit">Отправить</button>
+                    <div><button type="submit">Отправить</button></div>
                 </div>
                 
                 <textarea rows="10"  name="description" placeholder="Введите Описание"></textarea><br>
             </div>
         </form>
 
-        <form method="post" action="{{ route('admin.creatures_image.submit') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.creatures_image.submit') }}" enctype="multipart/form-data" class="general_form">
             <p>Загрузить фото на сервер</p>
             @csrf 
-            <div>
-                <input type="text" name="img_name" placeholder="Введите как хотите назвать картинку"><br>
-                <input type="file" name="image"><br>
-                
-                <button type="submit">Отправить</button>
-            </div>
+            <div><input type="text" name="img_name" placeholder="Введите как хотите назвать картинку"></div>
+            <div><input type="file" name="image"></div>
+            <div><button type="submit">Отправить</button></div>
 
             <img class="your-image" src="" alt="">
         </form>
@@ -82,26 +79,27 @@
 
                     <input type="text" name="short_description" placeholder="Введите краткое описание"><br>
 
-                    <button type="submit">Отправить</button>
+                    <div><button type="submit">Отправить</button></div>
                 </div>
                 
                 <textarea rows="10"  name="description" placeholder="Введите Описание"></textarea><br>
             </div>
         </form>
 
+        <div class="lists">
+            <p><a href="{{ route('admin.users') }}">Список пользователей</a></p>
+            <p><a href="{{ route('admin.proposal_creature') }}">Список предложений к добавлению</a></p>
+            <p><a href="{{ route('admin.custom_creature') }}">Список пользовательских существ</a></p>
+        </div>
     </div>
 
     <div>
 
     </div>
-    <div class="lists">
-        <p><a href="{{ route('admin.users') }}">Список пользователей</a></p>
-        <p><a href="{{ route('admin.proposal_creature') }}">Список предложений к добавлению</a></p>
-        <p><a href="{{ route('admin.custom_creature') }}">Список пользовательских существ</a></p>
-    </div>
+    
 
-    <br><br><br>
-    <div class="warning">
+    <br><br>
+    <div class="warning general_form">
         <p>Острожно!!!!</p>
         <form action="{{ route('admin.refresh') }}" method="post">@csrf<input type="submit" value="СТЕРЕТЬ БАЗУ ДАННЫХ"></form>
         <form action="{{ route('admin.do_admin') }}" method="post">@csrf <p>Напишите имя кому дать права администратора</p><input type="text" name="name"> <input type="submit" value="Добавить админа"></form>

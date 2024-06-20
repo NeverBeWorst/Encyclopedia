@@ -9,11 +9,7 @@
 @endsection
 
 @section('content')
-<section>
-    <div class="back_button">
-        <a href="{{ route ('gallery') }}"><p>В галерею</p></a>
-    </div>
-    
+<section class="shadow">
     <div class="info_block">
         <div class="picture">
             @if ($creature->user_id)
@@ -62,11 +58,8 @@
             <p>Оставьте свой коммментарий:</p>
             <form action="{{ route('gallery_creature.submit', [$creature->id]) }}" method="post">
                 @csrf
-                <label>Текст:</label>
-                <br>
                 <input class="text" type="text" name="text" placeholder="Введите текст">
-                <br>
-                <input type="submit">
+                <button type="submit">Отправить</button>
             </form>
         </div>
         @endif
@@ -74,11 +67,11 @@
         <div class="comments">
             <p>Комментарии других пользователей:</p>
 
-            @if ($reviews)
+            @if ($reviews->count() != 0)
             @foreach($reviews as $review)
                 <div>
-                    <a href="{{ route('profile.user', [$review->user_id] ) }}"><p class="user_name">{{$review->user_name}} |</p></a>
-                    <p>{{$review->text}}</p>
+                    <a href="{{ route('profile.user', [$review->user_id] ) }}"><p class="user_name">{{$review->user_name}} </p></a>
+                    <p class="text">{{$review->text}}</p>
                 </div>
             @endforeach
 

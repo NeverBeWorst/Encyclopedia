@@ -3,7 +3,7 @@
     
     <ul>
         <li><a href="{{route('home')}}">Главная</a></li>
-        <li><a href="{{route('gallery')}}">Галарея</a></li>
+        <li><a href="{{route('gallery')}}">Галерея</a></li>
         <li><a href="{{route('profile')}}">Профиль</a></li>
         <li>
             @if(!auth()->user())  

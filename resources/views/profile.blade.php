@@ -11,7 +11,27 @@
 <section>
     <ul class="users_info">
         <li>
-            <div class="short_info">
+            @if (Auth::user())
+                @if (Auth::user()->role == 'admin')
+                <div class="status">
+                    <p>Вы зашли за Администратора</p>
+                    <p>Ваш статус: “активен”. Вы имеете все права администратора</p>
+                </div>
+                @else
+                <div class="status">
+                    <p>Вы зашли за пользователя</p>
+                    <p>Ваш статус: “активен”. Вы имеете все права пользователя</p>
+                </div>
+                 @endif
+            @else
+            <div class="status">
+                <p>Вы сейчас в “Гостевом режиме”</p>
+                <p>Если вы тут впервые, вы можете зарегистрироваться</p>
+            </div>
+            @endif
+        </li>
+
+        <li class="short_info">
                 <div class="avatar_block">
                     @if (Auth::user())
 
@@ -27,32 +47,24 @@
                     <p class="user_name"> @if (Auth::user()) {{ Auth::user()->login }} @else Имя @endif </p>
                 </div>
 
-                {{-- <div class="notice">
-                    <img src="../img/icons/notification_icon_241069.png" alt="">
-                    <div></div>
-                </div> --}}
-            </div>
             
 
             <div class="user_status">
-                @if (Auth::user())
-                    @if (Auth::user()->role == 'admin')
-                    <div class="status">
-                        <p>Вы зашли за Администратора</p>
-                        <p>Ваш статус: “активен”. Вы имеете все права администратора</p>
+                <div class="about_me">
+                        <p>Обо мне</p>
+                        <div class="text">
+                            @if (Auth::user())
+                            <p>{{ Auth::user()->about_me }}</p>
+                            @else
+                            <p>Текст обо мне.</p>
+                            @endif
+                        </div>
+                        @if(Auth::user())
+                        <a href="{{ route('user.about_me') }}">
+                            <p>Редактировать</p>
+                        </a>
+                        @endif
                     </div>
-                    @else
-                    <div class="status">
-                        <p>Вы зашли за пользователя</p>
-                        <p>Ваш статус: “активен”. Вы имеете все права пользователя</p>
-                    </div>
-                    @endif
-                @else
-                <div class="status">
-                    <p>Вы сейчас в “Гостевом режиме”</p>
-                    <p>Если вы тут впервые, вы можете зарегистрироваться</p>
-                </div>
-                @endif
 
                 <div class="sign_in_out"> 
                     <div class="secret">
@@ -77,60 +89,43 @@
                         </div>
                     </div>
                     @endif
-                    
-                </div>
+                </div> 
                 
             </div> 
         </li>
 
         <li>
-            <div>
-                <div class="about_me">
-                    <p>Обо мне</p>
-                    <div class="text">
-                        @if (Auth::user())
-                        <p>{{ Auth::user()->about_me }}</p>
-                        @else
-                        <p>Текст обо мне.</p>
-                        @endif
-                    </div>
-                    <a href="{{ route('user.about_me') }}">
-                        <p>Редактировать</p>
-                    </a>
-                </div>
-            </div>
-            
-
+           
+        </li>
+        <li>
             <ul class="cards">
-                <a href="{{ route('user.proposal_creature') }}">
-                    <li class="card">
-                        <div>
-                            <p class="card_title">Кого-то не хватает?</p>
-                            <img src="../img/icons/free-icon-dragons-4214982.png" alt="" class="card_icon">
-                            <p class="card_text">Помогите нам дополнить нашу “Мифическую Энциклопедию”</p>
-                        </div>
-                    </li>
+                <li class="card">
+                <a href="{{ route('user.proposal_creature') }}">                   
+                    <div>
+                        <p class="card_title">Кого-то не хватает?</p>
+                        <img src="../img/icons/free-icon-dragons-4214982.png" alt="" class="card_icon">
+                        <p class="card_text">Помогите нам дополнить нашу “Мифическую Энциклопедию”</p>
+                    </div>                   
                 </a>
-
-                <a href="{{ route('user.image.generator') }}">
-                    <li class="card">
-                        <div>
-                            <p class="card_title">Создайте своего</p>
-                            <img src="../img/icons/free-icon-herne-the-hunter-4924605.png" alt="" class="card_icon">
-                            <p class="card_text">Создайте своё свирепое или милое существо.<br />Включите воображение!</p>
-                        </div>
-                    </li>
+            </li>
+            <li class="card">
+                <a href="">                   
+                    <div>
+                        <p class="card_title">В разработке</p>
+                        <img src="../img/icons/free-icon-gorgon-5240966.png" alt="" class="card_icon">
+                        <p class="card_text">Находится в разработке</p>
+                    </div>             
                 </a>
-
-                <a href="">
-                    <li class="card">
-                        <div>
-                            <p class="card_title">В разработке</p>
-                            <img src="../img/icons/free-icon-gorgon-5240966.png" alt="" class="card_icon">
-                            <p class="card_text">Находится в разработке</p>
-                        </div>
-                    </li>
+            </li>
+            <li class="card">
+                <a href="{{ route('user.image.generator') }}">               
+                    <div>
+                        <p class="card_title">Создайте своего</p>
+                        <img src="../img/icons/free-icon-herne-the-hunter-4924605.png" alt="" class="card_icon">
+                        <p class="card_text">Создайте свирепое или милое существо.<br />Включите воображение!</p>
+                    </div>
                 </a>
+            </li>
             </ul>
         </li>
 

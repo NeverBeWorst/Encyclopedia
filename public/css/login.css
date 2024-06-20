@@ -11,6 +11,11 @@ h1 {
 }
 
 .general_form button {
-    width: 200px;
+    width: 160px;
+    font-size: 17px;
+    height: 30px;
 }
 
+footer {
+    display: none;
+}
